@@ -1,0 +1,50 @@
+2020-10-22 15:02:38 Error: [Cake\Database\Exception] SQLSTATE[42S02]: Base table or view not found: 1146 Table 'cakecmstuto_v0_5_1.regions' doesn't exist in C:\Ampps39\www\420-5b7\tests\section_4\cakecmstuto_0_6_1\vendor\cakephp\cakephp\src\Database\Schema\Collection.php on line 132
+Stack Trace:
+#0 C:\Ampps39\www\420-5b7\tests\section_4\cakecmstuto_0_6_1\vendor\cakephp\cakephp\src\Database\Schema\Collection.php(98): Cake\Database\Schema\Collection->_reflect('Column', 'regions', Array, Object(Cake\Database\Schema\TableSchema))
+#1 C:\Ampps39\www\420-5b7\tests\section_4\cakecmstuto_0_6_1\vendor\cakephp\cakephp\src\Database\Schema\CachedCollection.php(61): Cake\Database\Schema\Collection->describe('regions', Array)
+#2 C:\Ampps39\www\420-5b7\tests\section_4\cakecmstuto_0_6_1\vendor\cakephp\cakephp\src\ORM\Table.php(566): Cake\Database\Schema\CachedCollection->describe('regions')
+#3 C:\Ampps39\www\420-5b7\tests\section_4\cakecmstuto_0_6_1\vendor\cakephp\cakephp\src\ORM\Table.php(691): Cake\ORM\Table->getSchema()
+#4 C:\Ampps39\www\420-5b7\tests\section_4\cakecmstuto_0_6_1\vendor\cakephp\bake\src\Shell\Task\ModelTask.php(221): Cake\ORM\Table->getPrimaryKey()
+#5 C:\Ampps39\www\420-5b7\tests\section_4\cakecmstuto_0_6_1\vendor\cakephp\bake\src\Shell\Task\ModelTask.php(131): Bake\Shell\Task\ModelTask->getAssociations(Object(Cake\ORM\Table))
+#6 C:\Ampps39\www\420-5b7\tests\section_4\cakecmstuto_0_6_1\vendor\cakephp\bake\src\Shell\Task\ModelTask.php(114): Bake\Shell\Task\ModelTask->getTableContext(Object(Cake\ORM\Table), 'regions', 'Regions')
+#7 C:\Ampps39\www\420-5b7\tests\section_4\cakecmstuto_0_6_1\vendor\cakephp\bake\src\Shell\Task\ModelTask.php(101): Bake\Shell\Task\ModelTask->bake('Regions')
+#8 C:\Ampps39\www\420-5b7\tests\section_4\cakecmstuto_0_6_1\vendor\cakephp\bake\src\Shell\BakeShell.php(282): Bake\Shell\Task\ModelTask->main('Regions')
+#9 C:\Ampps39\www\420-5b7\tests\section_4\cakecmstuto_0_6_1\vendor\cakephp\cakephp\src\Collection\CollectionTrait.php(64): Bake\Shell\BakeShell->Bake\Shell\{closure}('Regions', 0)
+#10 C:\Ampps39\www\420-5b7\tests\section_4\cakecmstuto_0_6_1\vendor\cakephp\bake\src\Shell\BakeShell.php(283): Cake\Collection\Collection->each(Object(Closure))
+#11 C:\Ampps39\www\420-5b7\tests\section_4\cakecmstuto_0_6_1\vendor\cakephp\cakephp\src\Console\Shell.php(517): Bake\Shell\BakeShell->all('regions')
+#12 C:\Ampps39\www\420-5b7\tests\section_4\cakecmstuto_0_6_1\vendor\cakephp\cakephp\src\Console\CommandRunner.php(384): Cake\Console\Shell->runCommand(Array, true)
+#13 C:\Ampps39\www\420-5b7\tests\section_4\cakecmstuto_0_6_1\vendor\cakephp\cakephp\src\Console\CommandRunner.php(162): Cake\Console\CommandRunner->runShell(Object(Bake\Shell\BakeShell), Array)
+#14 C:\Ampps39\www\420-5b7\tests\section_4\cakecmstuto_0_6_1\bin\cake.php(12): Cake\Console\CommandRunner->run(Array)
+#15 {main}
+
+
+Caused by: [PDOException] SQLSTATE[42S02]: Base table or view not found: 1146 Table 'cakecmstuto_v0_5_1.regions' doesn't exist in C:\Ampps39\www\420-5b7\tests\section_4\cakecmstuto_0_6_1\vendor\cakephp\cakephp\src\Database\Statement\MysqlStatement.php on line 37
+Stack Trace:
+#0 C:\Ampps39\www\420-5b7\tests\section_4\cakecmstuto_0_6_1\vendor\cakephp\cakephp\src\Database\Statement\MysqlStatement.php(37): PDOStatement->execute(NULL)
+#1 C:\Ampps39\www\420-5b7\tests\section_4\cakecmstuto_0_6_1\vendor\cakephp\cakephp\src\Database\Statement\StatementDecorator.php(173): Cake\Database\Statement\MysqlStatement->execute(NULL)
+#2 C:\Ampps39\www\420-5b7\tests\section_4\cakecmstuto_0_6_1\vendor\cakephp\cakephp\src\Database\Log\LoggingStatement.php(55): Cake\Database\Statement\StatementDecorator->execute(NULL)
+#3 C:\Ampps39\www\420-5b7\tests\section_4\cakecmstuto_0_6_1\vendor\cakephp\cakephp\src\Database\Connection.php(358): Cake\Database\Log\LoggingStatement->execute()
+#4 C:\Ampps39\www\420-5b7\tests\section_4\cakecmstuto_0_6_1\vendor\cakephp\cakephp\src\Core\Retry\CommandRetry.php(67): Cake\Database\Connection->Cake\Database\{closure}()
+#5 C:\Ampps39\www\420-5b7\tests\section_4\cakecmstuto_0_6_1\vendor\cakephp\cakephp\src\Database\Connection.php(361): Cake\Core\Retry\CommandRetry->run(Object(Closure))
+#6 C:\Ampps39\www\420-5b7\tests\section_4\cakecmstuto_0_6_1\vendor\cakephp\cakephp\src\Database\Connection.php(310): Cake\Database\Connection->query('SHOW FULL COLUM...')
+#7 C:\Ampps39\www\420-5b7\tests\section_4\cakecmstuto_0_6_1\vendor\cakephp\cakephp\src\Core\Retry\CommandRetry.php(67): Cake\Database\Connection->Cake\Database\{closure}()
+#8 C:\Ampps39\www\420-5b7\tests\section_4\cakecmstuto_0_6_1\vendor\cakephp\cakephp\src\Database\Connection.php(314): Cake\Core\Retry\CommandRetry->run(Object(Closure))
+#9 C:\Ampps39\www\420-5b7\tests\section_4\cakecmstuto_0_6_1\vendor\cakephp\cakephp\src\Database\Schema\Collection.php(130): Cake\Database\Connection->execute('SHOW FULL COLUM...', Array)
+#10 C:\Ampps39\www\420-5b7\tests\section_4\cakecmstuto_0_6_1\vendor\cakephp\cakephp\src\Database\Schema\Collection.php(98): Cake\Database\Schema\Collection->_reflect('Column', 'regions', Array, Object(Cake\Database\Schema\TableSchema))
+#11 C:\Ampps39\www\420-5b7\tests\section_4\cakecmstuto_0_6_1\vendor\cakephp\cakephp\src\Database\Schema\CachedCollection.php(61): Cake\Database\Schema\Collection->describe('regions', Array)
+#12 C:\Ampps39\www\420-5b7\tests\section_4\cakecmstuto_0_6_1\vendor\cakephp\cakephp\src\ORM\Table.php(566): Cake\Database\Schema\CachedCollection->describe('regions')
+#13 C:\Ampps39\www\420-5b7\tests\section_4\cakecmstuto_0_6_1\vendor\cakephp\cakephp\src\ORM\Table.php(691): Cake\ORM\Table->getSchema()
+#14 C:\Ampps39\www\420-5b7\tests\section_4\cakecmstuto_0_6_1\vendor\cakephp\bake\src\Shell\Task\ModelTask.php(221): Cake\ORM\Table->getPrimaryKey()
+#15 C:\Ampps39\www\420-5b7\tests\section_4\cakecmstuto_0_6_1\vendor\cakephp\bake\src\Shell\Task\ModelTask.php(131): Bake\Shell\Task\ModelTask->getAssociations(Object(Cake\ORM\Table))
+#16 C:\Ampps39\www\420-5b7\tests\section_4\cakecmstuto_0_6_1\vendor\cakephp\bake\src\Shell\Task\ModelTask.php(114): Bake\Shell\Task\ModelTask->getTableContext(Object(Cake\ORM\Table), 'regions', 'Regions')
+#17 C:\Ampps39\www\420-5b7\tests\section_4\cakecmstuto_0_6_1\vendor\cakephp\bake\src\Shell\Task\ModelTask.php(101): Bake\Shell\Task\ModelTask->bake('Regions')
+#18 C:\Ampps39\www\420-5b7\tests\section_4\cakecmstuto_0_6_1\vendor\cakephp\bake\src\Shell\BakeShell.php(282): Bake\Shell\Task\ModelTask->main('Regions')
+#19 C:\Ampps39\www\420-5b7\tests\section_4\cakecmstuto_0_6_1\vendor\cakephp\cakephp\src\Collection\CollectionTrait.php(64): Bake\Shell\BakeShell->Bake\Shell\{closure}('Regions', 0)
+#20 C:\Ampps39\www\420-5b7\tests\section_4\cakecmstuto_0_6_1\vendor\cakephp\bake\src\Shell\BakeShell.php(283): Cake\Collection\Collection->each(Object(Closure))
+#21 C:\Ampps39\www\420-5b7\tests\section_4\cakecmstuto_0_6_1\vendor\cakephp\cakephp\src\Console\Shell.php(517): Bake\Shell\BakeShell->all('regions')
+#22 C:\Ampps39\www\420-5b7\tests\section_4\cakecmstuto_0_6_1\vendor\cakephp\cakephp\src\Console\CommandRunner.php(384): Cake\Console\Shell->runCommand(Array, true)
+#23 C:\Ampps39\www\420-5b7\tests\section_4\cakecmstuto_0_6_1\vendor\cakephp\cakephp\src\Console\CommandRunner.php(162): Cake\Console\CommandRunner->runShell(Object(Bake\Shell\BakeShell), Array)
+#24 C:\Ampps39\www\420-5b7\tests\section_4\cakecmstuto_0_6_1\bin\cake.php(12): Cake\Console\CommandRunner->run(Array)
+#25 {main}
+
+

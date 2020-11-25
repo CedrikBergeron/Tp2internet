@@ -1,0 +1,624 @@
+2020-11-25 00:41:39 Debug: duration=2 rows=9 SHOW FULL COLUMNS FROM `flights`
+2020-11-25 00:41:39 Debug: duration=1 rows=4 SHOW INDEXES FROM `flights`
+2020-11-25 00:41:39 Debug: duration=9 rows=2 SELECT * FROM information_schema.key_column_usage AS kcu
+            INNER JOIN information_schema.referential_constraints AS rc
+            ON (
+                kcu.CONSTRAINT_NAME = rc.CONSTRAINT_NAME
+                AND kcu.CONSTRAINT_SCHEMA = rc.CONSTRAINT_SCHEMA
+            )
+            WHERE kcu.TABLE_SCHEMA = 'flights' AND kcu.TABLE_NAME = 'flights' AND rc.TABLE_NAME = 'flights'
+2020-11-25 00:41:39 Debug: duration=1 rows=1 SHOW TABLE STATUS WHERE Name = 'flights'
+2020-11-25 00:41:39 Debug: duration=1 rows=7 SHOW FULL COLUMNS FROM `users`
+2020-11-25 00:41:39 Debug: duration=1 rows=1 SHOW INDEXES FROM `users`
+2020-11-25 00:41:39 Debug: duration=6 rows=0 SELECT * FROM information_schema.key_column_usage AS kcu
+            INNER JOIN information_schema.referential_constraints AS rc
+            ON (
+                kcu.CONSTRAINT_NAME = rc.CONSTRAINT_NAME
+                AND kcu.CONSTRAINT_SCHEMA = rc.CONSTRAINT_SCHEMA
+            )
+            WHERE kcu.TABLE_SCHEMA = 'flights' AND kcu.TABLE_NAME = 'users' AND rc.TABLE_NAME = 'users'
+2020-11-25 00:41:39 Debug: duration=1 rows=1 SHOW TABLE STATUS WHERE Name = 'users'
+2020-11-25 00:41:39 Debug: duration=1 rows=4 SHOW FULL COLUMNS FROM `tags`
+2020-11-25 00:41:39 Debug: duration=1 rows=2 SHOW INDEXES FROM `tags`
+2020-11-25 00:41:39 Debug: duration=7 rows=0 SELECT * FROM information_schema.key_column_usage AS kcu
+            INNER JOIN information_schema.referential_constraints AS rc
+            ON (
+                kcu.CONSTRAINT_NAME = rc.CONSTRAINT_NAME
+                AND kcu.CONSTRAINT_SCHEMA = rc.CONSTRAINT_SCHEMA
+            )
+            WHERE kcu.TABLE_SCHEMA = 'flights' AND kcu.TABLE_NAME = 'tags' AND rc.TABLE_NAME = 'tags'
+2020-11-25 00:41:39 Debug: duration=1 rows=1 SHOW TABLE STATUS WHERE Name = 'tags'
+2020-11-25 00:41:39 Debug: duration=1 rows=6 SHOW FULL COLUMNS FROM `files`
+2020-11-25 00:41:39 Debug: duration=1 rows=1 SHOW INDEXES FROM `files`
+2020-11-25 00:41:39 Debug: duration=7 rows=0 SELECT * FROM information_schema.key_column_usage AS kcu
+            INNER JOIN information_schema.referential_constraints AS rc
+            ON (
+                kcu.CONSTRAINT_NAME = rc.CONSTRAINT_NAME
+                AND kcu.CONSTRAINT_SCHEMA = rc.CONSTRAINT_SCHEMA
+            )
+            WHERE kcu.TABLE_SCHEMA = 'flights' AND kcu.TABLE_NAME = 'files' AND rc.TABLE_NAME = 'files'
+2020-11-25 00:41:39 Debug: duration=1 rows=1 SHOW TABLE STATUS WHERE Name = 'files'
+2020-11-25 00:41:39 Debug: duration=1 rows=2 SELECT Flights.id AS `Flights__id`, Flights.user_id AS `Flights__user_id`, Flights.airline_id AS `Flights__airline_id`, Flights.title AS `Flights__title`, Flights.slug AS `Flights__slug`, Flights.body AS `Flights__body`, Flights.published AS `Flights__published`, Flights.created AS `Flights__created`, Flights.modified AS `Flights__modified`, Users.id AS `Users__id`, Users.email AS `Users__email`, Users.password AS `Users__password`, Users.uuid AS `Users__uuid`, Users.confirmed AS `Users__confirmed`, Users.created AS `Users__created`, Users.modified AS `Users__modified` FROM flights Flights INNER JOIN users Users ON Users.id = (Flights.user_id) LIMIT 20 OFFSET 0
+2020-11-25 00:41:39 Debug: duration=1 rows=2 SHOW FULL COLUMNS FROM `flights_tags`
+2020-11-25 00:41:39 Debug: duration=1 rows=3 SHOW INDEXES FROM `flights_tags`
+2020-11-25 00:41:39 Debug: duration=7 rows=2 SELECT * FROM information_schema.key_column_usage AS kcu
+            INNER JOIN information_schema.referential_constraints AS rc
+            ON (
+                kcu.CONSTRAINT_NAME = rc.CONSTRAINT_NAME
+                AND kcu.CONSTRAINT_SCHEMA = rc.CONSTRAINT_SCHEMA
+            )
+            WHERE kcu.TABLE_SCHEMA = 'flights' AND kcu.TABLE_NAME = 'flights_tags' AND rc.TABLE_NAME = 'flights_tags'
+2020-11-25 00:41:39 Debug: duration=1 rows=1 SHOW TABLE STATUS WHERE Name = 'flights_tags'
+2020-11-25 00:41:39 Debug: duration=1 rows=6 SHOW FULL COLUMNS FROM `i18n`
+2020-11-25 00:41:39 Debug: duration=1 rows=8 SHOW INDEXES FROM `i18n`
+2020-11-25 00:41:39 Debug: duration=7 rows=0 SELECT * FROM information_schema.key_column_usage AS kcu
+            INNER JOIN information_schema.referential_constraints AS rc
+            ON (
+                kcu.CONSTRAINT_NAME = rc.CONSTRAINT_NAME
+                AND kcu.CONSTRAINT_SCHEMA = rc.CONSTRAINT_SCHEMA
+            )
+            WHERE kcu.TABLE_SCHEMA = 'flights' AND kcu.TABLE_NAME = 'i18n' AND rc.TABLE_NAME = 'i18n'
+2020-11-25 00:41:39 Debug: duration=1 rows=1 SHOW TABLE STATUS WHERE Name = 'i18n'
+2020-11-25 00:41:39 Debug: duration=1 rows=2 SELECT FlightsTags.flight_id AS `Tags_CJoin__flight_id`, FlightsTags.tag_id AS `Tags_CJoin__tag_id`, Tags.id AS `Tags__id`, Tags.title AS `Tags__title`, Tags.created AS `Tags__created`, Tags.modified AS `Tags__modified`, Tags_title_translation.id AS `Tags_title_translation__id`, Tags_title_translation.content AS `Tags_title_translation__content` FROM tags Tags INNER JOIN flights_tags FlightsTags ON Tags.id = (FlightsTags.tag_id) LEFT JOIN i18n Tags_title_translation ON (Tags_title_translation.model = 'Tags' AND Tags_title_translation.field = 'title' AND Tags_title_translation.locale = 'fr_CA' AND Tags.id = (Tags_title_translation.foreign_key)) WHERE FlightsTags.flight_id in (16,17)
+2020-11-25 00:41:39 Debug: duration=1 rows=3 SHOW FULL COLUMNS FROM `flights_files`
+2020-11-25 00:41:39 Debug: duration=1 rows=3 SHOW INDEXES FROM `flights_files`
+2020-11-25 00:41:39 Debug: duration=7 rows=2 SELECT * FROM information_schema.key_column_usage AS kcu
+            INNER JOIN information_schema.referential_constraints AS rc
+            ON (
+                kcu.CONSTRAINT_NAME = rc.CONSTRAINT_NAME
+                AND kcu.CONSTRAINT_SCHEMA = rc.CONSTRAINT_SCHEMA
+            )
+            WHERE kcu.TABLE_SCHEMA = 'flights' AND kcu.TABLE_NAME = 'flights_files' AND rc.TABLE_NAME = 'flights_files'
+2020-11-25 00:41:39 Debug: duration=2 rows=1 SHOW TABLE STATUS WHERE Name = 'flights_files'
+2020-11-25 00:41:39 Debug: duration=1 rows=2 SELECT FlightsFiles.id AS `Files_CJoin__id`, FlightsFiles.flight_id AS `Files_CJoin__flight_id`, FlightsFiles.file_id AS `Files_CJoin__file_id`, Files.id AS `Files__id`, Files.name AS `Files__name`, Files.path AS `Files__path`, Files.created AS `Files__created`, Files.modified AS `Files__modified`, Files.status AS `Files__status` FROM files Files INNER JOIN flights_files FlightsFiles ON Files.id = (FlightsFiles.file_id) WHERE FlightsFiles.flight_id in (16,17)
+2020-11-25 00:41:39 Debug: duration=0 rows=1 SELECT (COUNT(*)) AS `count` FROM flights Flights INNER JOIN users Users ON Users.id = (Flights.user_id)
+2020-11-25 00:41:47 Debug: duration=1 rows=2 SELECT Flights.id AS `Flights__id`, Flights.user_id AS `Flights__user_id`, Flights.airline_id AS `Flights__airline_id`, Flights.title AS `Flights__title`, Flights.slug AS `Flights__slug`, Flights.body AS `Flights__body`, Flights.published AS `Flights__published`, Flights.created AS `Flights__created`, Flights.modified AS `Flights__modified`, Users.id AS `Users__id`, Users.email AS `Users__email`, Users.password AS `Users__password`, Users.uuid AS `Users__uuid`, Users.confirmed AS `Users__confirmed`, Users.created AS `Users__created`, Users.modified AS `Users__modified` FROM flights Flights INNER JOIN users Users ON Users.id = (Flights.user_id) LIMIT 20 OFFSET 0
+2020-11-25 00:41:47 Debug: duration=1 rows=2 SELECT FlightsTags.flight_id AS `Tags_CJoin__flight_id`, FlightsTags.tag_id AS `Tags_CJoin__tag_id`, Tags.id AS `Tags__id`, Tags.title AS `Tags__title`, Tags.created AS `Tags__created`, Tags.modified AS `Tags__modified`, Tags_title_translation.id AS `Tags_title_translation__id`, Tags_title_translation.content AS `Tags_title_translation__content` FROM tags Tags INNER JOIN flights_tags FlightsTags ON Tags.id = (FlightsTags.tag_id) LEFT JOIN i18n Tags_title_translation ON (Tags_title_translation.model = 'Tags' AND Tags_title_translation.field = 'title' AND Tags_title_translation.locale = 'fr_CA' AND Tags.id = (Tags_title_translation.foreign_key)) WHERE FlightsTags.flight_id in (16,17)
+2020-11-25 00:41:47 Debug: duration=1 rows=2 SELECT FlightsFiles.id AS `Files_CJoin__id`, FlightsFiles.flight_id AS `Files_CJoin__flight_id`, FlightsFiles.file_id AS `Files_CJoin__file_id`, Files.id AS `Files__id`, Files.name AS `Files__name`, Files.path AS `Files__path`, Files.created AS `Files__created`, Files.modified AS `Files__modified`, Files.status AS `Files__status` FROM files Files INNER JOIN flights_files FlightsFiles ON Files.id = (FlightsFiles.file_id) WHERE FlightsFiles.flight_id in (16,17)
+2020-11-25 00:41:47 Debug: duration=1 rows=1 SELECT (COUNT(*)) AS `count` FROM flights Flights INNER JOIN users Users ON Users.id = (Flights.user_id)
+2020-11-25 00:41:48 Debug: duration=1 rows=2 SELECT Flights.id AS `Flights__id`, Flights.user_id AS `Flights__user_id`, Flights.airline_id AS `Flights__airline_id`, Flights.title AS `Flights__title`, Flights.slug AS `Flights__slug`, Flights.body AS `Flights__body`, Flights.published AS `Flights__published`, Flights.created AS `Flights__created`, Flights.modified AS `Flights__modified`, Users.id AS `Users__id`, Users.email AS `Users__email`, Users.password AS `Users__password`, Users.uuid AS `Users__uuid`, Users.confirmed AS `Users__confirmed`, Users.created AS `Users__created`, Users.modified AS `Users__modified` FROM flights Flights INNER JOIN users Users ON Users.id = (Flights.user_id) LIMIT 20 OFFSET 0
+2020-11-25 00:41:48 Debug: duration=1 rows=2 SELECT FlightsTags.flight_id AS `Tags_CJoin__flight_id`, FlightsTags.tag_id AS `Tags_CJoin__tag_id`, Tags.id AS `Tags__id`, Tags.title AS `Tags__title`, Tags.created AS `Tags__created`, Tags.modified AS `Tags__modified`, Tags_title_translation.id AS `Tags_title_translation__id`, Tags_title_translation.content AS `Tags_title_translation__content` FROM tags Tags INNER JOIN flights_tags FlightsTags ON Tags.id = (FlightsTags.tag_id) LEFT JOIN i18n Tags_title_translation ON (Tags_title_translation.model = 'Tags' AND Tags_title_translation.field = 'title' AND Tags_title_translation.locale = 'fr_CA' AND Tags.id = (Tags_title_translation.foreign_key)) WHERE FlightsTags.flight_id in (16,17)
+2020-11-25 00:41:48 Debug: duration=1 rows=2 SELECT FlightsFiles.id AS `Files_CJoin__id`, FlightsFiles.flight_id AS `Files_CJoin__flight_id`, FlightsFiles.file_id AS `Files_CJoin__file_id`, Files.id AS `Files__id`, Files.name AS `Files__name`, Files.path AS `Files__path`, Files.created AS `Files__created`, Files.modified AS `Files__modified`, Files.status AS `Files__status` FROM files Files INNER JOIN flights_files FlightsFiles ON Files.id = (FlightsFiles.file_id) WHERE FlightsFiles.flight_id in (16,17)
+2020-11-25 00:41:48 Debug: duration=1 rows=1 SELECT (COUNT(*)) AS `count` FROM flights Flights INNER JOIN users Users ON Users.id = (Flights.user_id)
+2020-11-25 00:41:58 Debug: duration=1 rows=2 SELECT Flights.id AS `Flights__id`, Flights.user_id AS `Flights__user_id`, Flights.airline_id AS `Flights__airline_id`, Flights.title AS `Flights__title`, Flights.slug AS `Flights__slug`, Flights.body AS `Flights__body`, Flights.published AS `Flights__published`, Flights.created AS `Flights__created`, Flights.modified AS `Flights__modified`, Users.id AS `Users__id`, Users.email AS `Users__email`, Users.password AS `Users__password`, Users.uuid AS `Users__uuid`, Users.confirmed AS `Users__confirmed`, Users.created AS `Users__created`, Users.modified AS `Users__modified` FROM flights Flights INNER JOIN users Users ON Users.id = (Flights.user_id) LIMIT 20 OFFSET 0
+2020-11-25 00:41:58 Debug: duration=1 rows=2 SELECT FlightsTags.flight_id AS `Tags_CJoin__flight_id`, FlightsTags.tag_id AS `Tags_CJoin__tag_id`, Tags.id AS `Tags__id`, Tags.title AS `Tags__title`, Tags.created AS `Tags__created`, Tags.modified AS `Tags__modified`, Tags_title_translation.id AS `Tags_title_translation__id`, Tags_title_translation.content AS `Tags_title_translation__content` FROM tags Tags INNER JOIN flights_tags FlightsTags ON Tags.id = (FlightsTags.tag_id) LEFT JOIN i18n Tags_title_translation ON (Tags_title_translation.model = 'Tags' AND Tags_title_translation.field = 'title' AND Tags_title_translation.locale = 'fr_CA' AND Tags.id = (Tags_title_translation.foreign_key)) WHERE FlightsTags.flight_id in (16,17)
+2020-11-25 00:41:58 Debug: duration=1 rows=2 SELECT FlightsFiles.id AS `Files_CJoin__id`, FlightsFiles.flight_id AS `Files_CJoin__flight_id`, FlightsFiles.file_id AS `Files_CJoin__file_id`, Files.id AS `Files__id`, Files.name AS `Files__name`, Files.path AS `Files__path`, Files.created AS `Files__created`, Files.modified AS `Files__modified`, Files.status AS `Files__status` FROM files Files INNER JOIN flights_files FlightsFiles ON Files.id = (FlightsFiles.file_id) WHERE FlightsFiles.flight_id in (16,17)
+2020-11-25 00:41:58 Debug: duration=1 rows=1 SELECT (COUNT(*)) AS `count` FROM flights Flights INNER JOIN users Users ON Users.id = (Flights.user_id)
+2020-11-25 00:42:34 Debug: duration=1 rows=2 SELECT Flights.id AS `Flights__id`, Flights.user_id AS `Flights__user_id`, Flights.airline_id AS `Flights__airline_id`, Flights.title AS `Flights__title`, Flights.slug AS `Flights__slug`, Flights.body AS `Flights__body`, Flights.published AS `Flights__published`, Flights.created AS `Flights__created`, Flights.modified AS `Flights__modified`, Users.id AS `Users__id`, Users.email AS `Users__email`, Users.password AS `Users__password`, Users.uuid AS `Users__uuid`, Users.confirmed AS `Users__confirmed`, Users.created AS `Users__created`, Users.modified AS `Users__modified` FROM flights Flights INNER JOIN users Users ON Users.id = (Flights.user_id) LIMIT 20 OFFSET 0
+2020-11-25 00:42:34 Debug: duration=1 rows=2 SELECT FlightsTags.flight_id AS `Tags_CJoin__flight_id`, FlightsTags.tag_id AS `Tags_CJoin__tag_id`, Tags.id AS `Tags__id`, Tags.title AS `Tags__title`, Tags.created AS `Tags__created`, Tags.modified AS `Tags__modified`, Tags_title_translation.id AS `Tags_title_translation__id`, Tags_title_translation.content AS `Tags_title_translation__content` FROM tags Tags INNER JOIN flights_tags FlightsTags ON Tags.id = (FlightsTags.tag_id) LEFT JOIN i18n Tags_title_translation ON (Tags_title_translation.model = 'Tags' AND Tags_title_translation.field = 'title' AND Tags_title_translation.locale = 'fr_CA' AND Tags.id = (Tags_title_translation.foreign_key)) WHERE FlightsTags.flight_id in (16,17)
+2020-11-25 00:42:34 Debug: duration=1 rows=2 SELECT FlightsFiles.id AS `Files_CJoin__id`, FlightsFiles.flight_id AS `Files_CJoin__flight_id`, FlightsFiles.file_id AS `Files_CJoin__file_id`, Files.id AS `Files__id`, Files.name AS `Files__name`, Files.path AS `Files__path`, Files.created AS `Files__created`, Files.modified AS `Files__modified`, Files.status AS `Files__status` FROM files Files INNER JOIN flights_files FlightsFiles ON Files.id = (FlightsFiles.file_id) WHERE FlightsFiles.flight_id in (16,17)
+2020-11-25 00:42:34 Debug: duration=0 rows=1 SELECT (COUNT(*)) AS `count` FROM flights Flights INNER JOIN users Users ON Users.id = (Flights.user_id)
+2020-11-25 00:43:45 Debug: duration=2 rows=9 SHOW FULL COLUMNS FROM `flights`
+2020-11-25 00:43:45 Debug: duration=2 rows=4 SHOW INDEXES FROM `flights`
+2020-11-25 00:43:45 Debug: duration=7 rows=2 SELECT * FROM information_schema.key_column_usage AS kcu
+            INNER JOIN information_schema.referential_constraints AS rc
+            ON (
+                kcu.CONSTRAINT_NAME = rc.CONSTRAINT_NAME
+                AND kcu.CONSTRAINT_SCHEMA = rc.CONSTRAINT_SCHEMA
+            )
+            WHERE kcu.TABLE_SCHEMA = 'flights' AND kcu.TABLE_NAME = 'flights' AND rc.TABLE_NAME = 'flights'
+2020-11-25 00:43:45 Debug: duration=1 rows=1 SHOW TABLE STATUS WHERE Name = 'flights'
+2020-11-25 00:43:45 Debug: duration=2 rows=7 SHOW FULL COLUMNS FROM `users`
+2020-11-25 00:43:45 Debug: duration=1 rows=1 SHOW INDEXES FROM `users`
+2020-11-25 00:43:45 Debug: duration=7 rows=0 SELECT * FROM information_schema.key_column_usage AS kcu
+            INNER JOIN information_schema.referential_constraints AS rc
+            ON (
+                kcu.CONSTRAINT_NAME = rc.CONSTRAINT_NAME
+                AND kcu.CONSTRAINT_SCHEMA = rc.CONSTRAINT_SCHEMA
+            )
+            WHERE kcu.TABLE_SCHEMA = 'flights' AND kcu.TABLE_NAME = 'users' AND rc.TABLE_NAME = 'users'
+2020-11-25 00:43:45 Debug: duration=1 rows=1 SHOW TABLE STATUS WHERE Name = 'users'
+2020-11-25 00:43:45 Debug: duration=2 rows=4 SHOW FULL COLUMNS FROM `tags`
+2020-11-25 00:43:45 Debug: duration=2 rows=2 SHOW INDEXES FROM `tags`
+2020-11-25 00:43:45 Debug: duration=8 rows=0 SELECT * FROM information_schema.key_column_usage AS kcu
+            INNER JOIN information_schema.referential_constraints AS rc
+            ON (
+                kcu.CONSTRAINT_NAME = rc.CONSTRAINT_NAME
+                AND kcu.CONSTRAINT_SCHEMA = rc.CONSTRAINT_SCHEMA
+            )
+            WHERE kcu.TABLE_SCHEMA = 'flights' AND kcu.TABLE_NAME = 'tags' AND rc.TABLE_NAME = 'tags'
+2020-11-25 00:43:45 Debug: duration=1 rows=1 SHOW TABLE STATUS WHERE Name = 'tags'
+2020-11-25 00:43:45 Debug: duration=3 rows=6 SHOW FULL COLUMNS FROM `files`
+2020-11-25 00:43:45 Debug: duration=1 rows=1 SHOW INDEXES FROM `files`
+2020-11-25 00:43:45 Debug: duration=7 rows=0 SELECT * FROM information_schema.key_column_usage AS kcu
+            INNER JOIN information_schema.referential_constraints AS rc
+            ON (
+                kcu.CONSTRAINT_NAME = rc.CONSTRAINT_NAME
+                AND kcu.CONSTRAINT_SCHEMA = rc.CONSTRAINT_SCHEMA
+            )
+            WHERE kcu.TABLE_SCHEMA = 'flights' AND kcu.TABLE_NAME = 'files' AND rc.TABLE_NAME = 'files'
+2020-11-25 00:43:45 Debug: duration=1 rows=1 SHOW TABLE STATUS WHERE Name = 'files'
+2020-11-25 00:43:45 Debug: duration=1 rows=2 SELECT Flights.id AS `Flights__id`, Flights.user_id AS `Flights__user_id`, Flights.airline_id AS `Flights__airline_id`, Flights.title AS `Flights__title`, Flights.slug AS `Flights__slug`, Flights.body AS `Flights__body`, Flights.published AS `Flights__published`, Flights.created AS `Flights__created`, Flights.modified AS `Flights__modified`, Users.id AS `Users__id`, Users.email AS `Users__email`, Users.password AS `Users__password`, Users.uuid AS `Users__uuid`, Users.confirmed AS `Users__confirmed`, Users.created AS `Users__created`, Users.modified AS `Users__modified` FROM flights Flights INNER JOIN users Users ON Users.id = (Flights.user_id) LIMIT 20 OFFSET 0
+2020-11-25 00:43:45 Debug: duration=2 rows=2 SHOW FULL COLUMNS FROM `flights_tags`
+2020-11-25 00:43:45 Debug: duration=1 rows=3 SHOW INDEXES FROM `flights_tags`
+2020-11-25 00:43:45 Debug: duration=7 rows=2 SELECT * FROM information_schema.key_column_usage AS kcu
+            INNER JOIN information_schema.referential_constraints AS rc
+            ON (
+                kcu.CONSTRAINT_NAME = rc.CONSTRAINT_NAME
+                AND kcu.CONSTRAINT_SCHEMA = rc.CONSTRAINT_SCHEMA
+            )
+            WHERE kcu.TABLE_SCHEMA = 'flights' AND kcu.TABLE_NAME = 'flights_tags' AND rc.TABLE_NAME = 'flights_tags'
+2020-11-25 00:43:45 Debug: duration=1 rows=1 SHOW TABLE STATUS WHERE Name = 'flights_tags'
+2020-11-25 00:43:45 Debug: duration=1 rows=6 SHOW FULL COLUMNS FROM `i18n`
+2020-11-25 00:43:45 Debug: duration=2 rows=8 SHOW INDEXES FROM `i18n`
+2020-11-25 00:43:45 Debug: duration=7 rows=0 SELECT * FROM information_schema.key_column_usage AS kcu
+            INNER JOIN information_schema.referential_constraints AS rc
+            ON (
+                kcu.CONSTRAINT_NAME = rc.CONSTRAINT_NAME
+                AND kcu.CONSTRAINT_SCHEMA = rc.CONSTRAINT_SCHEMA
+            )
+            WHERE kcu.TABLE_SCHEMA = 'flights' AND kcu.TABLE_NAME = 'i18n' AND rc.TABLE_NAME = 'i18n'
+2020-11-25 00:43:45 Debug: duration=1 rows=1 SHOW TABLE STATUS WHERE Name = 'i18n'
+2020-11-25 00:43:45 Debug: duration=1 rows=2 SELECT FlightsTags.flight_id AS `Tags_CJoin__flight_id`, FlightsTags.tag_id AS `Tags_CJoin__tag_id`, Tags.id AS `Tags__id`, Tags.title AS `Tags__title`, Tags.created AS `Tags__created`, Tags.modified AS `Tags__modified`, Tags_title_translation.id AS `Tags_title_translation__id`, Tags_title_translation.content AS `Tags_title_translation__content` FROM tags Tags INNER JOIN flights_tags FlightsTags ON Tags.id = (FlightsTags.tag_id) LEFT JOIN i18n Tags_title_translation ON (Tags_title_translation.model = 'Tags' AND Tags_title_translation.field = 'title' AND Tags_title_translation.locale = 'fr_CA' AND Tags.id = (Tags_title_translation.foreign_key)) WHERE FlightsTags.flight_id in (16,17)
+2020-11-25 00:43:45 Debug: duration=1 rows=3 SHOW FULL COLUMNS FROM `flights_files`
+2020-11-25 00:43:45 Debug: duration=1 rows=3 SHOW INDEXES FROM `flights_files`
+2020-11-25 00:43:45 Debug: duration=7 rows=2 SELECT * FROM information_schema.key_column_usage AS kcu
+            INNER JOIN information_schema.referential_constraints AS rc
+            ON (
+                kcu.CONSTRAINT_NAME = rc.CONSTRAINT_NAME
+                AND kcu.CONSTRAINT_SCHEMA = rc.CONSTRAINT_SCHEMA
+            )
+            WHERE kcu.TABLE_SCHEMA = 'flights' AND kcu.TABLE_NAME = 'flights_files' AND rc.TABLE_NAME = 'flights_files'
+2020-11-25 00:43:45 Debug: duration=2 rows=1 SHOW TABLE STATUS WHERE Name = 'flights_files'
+2020-11-25 00:43:45 Debug: duration=1 rows=2 SELECT FlightsFiles.id AS `Files_CJoin__id`, FlightsFiles.flight_id AS `Files_CJoin__flight_id`, FlightsFiles.file_id AS `Files_CJoin__file_id`, Files.id AS `Files__id`, Files.name AS `Files__name`, Files.path AS `Files__path`, Files.created AS `Files__created`, Files.modified AS `Files__modified`, Files.status AS `Files__status` FROM files Files INNER JOIN flights_files FlightsFiles ON Files.id = (FlightsFiles.file_id) WHERE FlightsFiles.flight_id in (16,17)
+2020-11-25 00:43:45 Debug: duration=1 rows=1 SELECT (COUNT(*)) AS `count` FROM flights Flights INNER JOIN users Users ON Users.id = (Flights.user_id)
+2020-11-25 00:44:52 Debug: duration=1 rows=2 SELECT Flights.id AS `Flights__id`, Flights.user_id AS `Flights__user_id`, Flights.airline_id AS `Flights__airline_id`, Flights.title AS `Flights__title`, Flights.slug AS `Flights__slug`, Flights.body AS `Flights__body`, Flights.published AS `Flights__published`, Flights.created AS `Flights__created`, Flights.modified AS `Flights__modified`, Users.id AS `Users__id`, Users.email AS `Users__email`, Users.password AS `Users__password`, Users.uuid AS `Users__uuid`, Users.confirmed AS `Users__confirmed`, Users.created AS `Users__created`, Users.modified AS `Users__modified` FROM flights Flights INNER JOIN users Users ON Users.id = (Flights.user_id) LIMIT 20 OFFSET 0
+2020-11-25 00:44:52 Debug: duration=1 rows=2 SELECT FlightsTags.flight_id AS `Tags_CJoin__flight_id`, FlightsTags.tag_id AS `Tags_CJoin__tag_id`, Tags.id AS `Tags__id`, Tags.title AS `Tags__title`, Tags.created AS `Tags__created`, Tags.modified AS `Tags__modified`, Tags_title_translation.id AS `Tags_title_translation__id`, Tags_title_translation.content AS `Tags_title_translation__content` FROM tags Tags INNER JOIN flights_tags FlightsTags ON Tags.id = (FlightsTags.tag_id) LEFT JOIN i18n Tags_title_translation ON (Tags_title_translation.model = 'Tags' AND Tags_title_translation.field = 'title' AND Tags_title_translation.locale = 'fr_CA' AND Tags.id = (Tags_title_translation.foreign_key)) WHERE FlightsTags.flight_id in (16,17)
+2020-11-25 00:44:52 Debug: duration=1 rows=2 SELECT FlightsFiles.id AS `Files_CJoin__id`, FlightsFiles.flight_id AS `Files_CJoin__flight_id`, FlightsFiles.file_id AS `Files_CJoin__file_id`, Files.id AS `Files__id`, Files.name AS `Files__name`, Files.path AS `Files__path`, Files.created AS `Files__created`, Files.modified AS `Files__modified`, Files.status AS `Files__status` FROM files Files INNER JOIN flights_files FlightsFiles ON Files.id = (FlightsFiles.file_id) WHERE FlightsFiles.flight_id in (16,17)
+2020-11-25 00:44:52 Debug: duration=1 rows=1 SELECT (COUNT(*)) AS `count` FROM flights Flights INNER JOIN users Users ON Users.id = (Flights.user_id)
+2020-11-25 00:47:39 Debug: duration=2 rows=3 SHOW FULL COLUMNS FROM `regions`
+2020-11-25 00:47:39 Debug: duration=2 rows=1 SHOW INDEXES FROM `regions`
+2020-11-25 00:47:39 Debug: duration=8 rows=0 SELECT * FROM information_schema.key_column_usage AS kcu
+            INNER JOIN information_schema.referential_constraints AS rc
+            ON (
+                kcu.CONSTRAINT_NAME = rc.CONSTRAINT_NAME
+                AND kcu.CONSTRAINT_SCHEMA = rc.CONSTRAINT_SCHEMA
+            )
+            WHERE kcu.TABLE_SCHEMA = 'flights' AND kcu.TABLE_NAME = 'regions' AND rc.TABLE_NAME = 'regions'
+2020-11-25 00:47:39 Debug: duration=2 rows=1 SHOW TABLE STATUS WHERE Name = 'regions'
+2020-11-25 00:47:39 Debug: duration=1 rows=7 SELECT Regions.id AS `Regions__id`, Regions.code AS `Regions__code`, Regions.name AS `Regions__name` FROM regions Regions
+2020-11-25 00:47:41 Debug: duration=2 rows=9 SHOW FULL COLUMNS FROM `flights`
+2020-11-25 00:47:41 Debug: duration=2 rows=4 SHOW INDEXES FROM `flights`
+2020-11-25 00:47:41 Debug: duration=9 rows=2 SELECT * FROM information_schema.key_column_usage AS kcu
+            INNER JOIN information_schema.referential_constraints AS rc
+            ON (
+                kcu.CONSTRAINT_NAME = rc.CONSTRAINT_NAME
+                AND kcu.CONSTRAINT_SCHEMA = rc.CONSTRAINT_SCHEMA
+            )
+            WHERE kcu.TABLE_SCHEMA = 'flights' AND kcu.TABLE_NAME = 'flights' AND rc.TABLE_NAME = 'flights'
+2020-11-25 00:47:41 Debug: duration=1 rows=1 SHOW TABLE STATUS WHERE Name = 'flights'
+2020-11-25 00:47:41 Debug: duration=1 rows=7 SHOW FULL COLUMNS FROM `users`
+2020-11-25 00:47:41 Debug: duration=1 rows=1 SHOW INDEXES FROM `users`
+2020-11-25 00:47:41 Debug: duration=8 rows=0 SELECT * FROM information_schema.key_column_usage AS kcu
+            INNER JOIN information_schema.referential_constraints AS rc
+            ON (
+                kcu.CONSTRAINT_NAME = rc.CONSTRAINT_NAME
+                AND kcu.CONSTRAINT_SCHEMA = rc.CONSTRAINT_SCHEMA
+            )
+            WHERE kcu.TABLE_SCHEMA = 'flights' AND kcu.TABLE_NAME = 'users' AND rc.TABLE_NAME = 'users'
+2020-11-25 00:47:41 Debug: duration=3 rows=1 SHOW TABLE STATUS WHERE Name = 'users'
+2020-11-25 00:47:41 Debug: duration=1 rows=4 SHOW FULL COLUMNS FROM `tags`
+2020-11-25 00:47:41 Debug: duration=1 rows=2 SHOW INDEXES FROM `tags`
+2020-11-25 00:47:41 Debug: duration=10 rows=0 SELECT * FROM information_schema.key_column_usage AS kcu
+            INNER JOIN information_schema.referential_constraints AS rc
+            ON (
+                kcu.CONSTRAINT_NAME = rc.CONSTRAINT_NAME
+                AND kcu.CONSTRAINT_SCHEMA = rc.CONSTRAINT_SCHEMA
+            )
+            WHERE kcu.TABLE_SCHEMA = 'flights' AND kcu.TABLE_NAME = 'tags' AND rc.TABLE_NAME = 'tags'
+2020-11-25 00:47:41 Debug: duration=2 rows=1 SHOW TABLE STATUS WHERE Name = 'tags'
+2020-11-25 00:47:41 Debug: duration=1 rows=6 SHOW FULL COLUMNS FROM `files`
+2020-11-25 00:47:41 Debug: duration=1 rows=1 SHOW INDEXES FROM `files`
+2020-11-25 00:47:41 Debug: duration=8 rows=0 SELECT * FROM information_schema.key_column_usage AS kcu
+            INNER JOIN information_schema.referential_constraints AS rc
+            ON (
+                kcu.CONSTRAINT_NAME = rc.CONSTRAINT_NAME
+                AND kcu.CONSTRAINT_SCHEMA = rc.CONSTRAINT_SCHEMA
+            )
+            WHERE kcu.TABLE_SCHEMA = 'flights' AND kcu.TABLE_NAME = 'files' AND rc.TABLE_NAME = 'files'
+2020-11-25 00:47:41 Debug: duration=1 rows=1 SHOW TABLE STATUS WHERE Name = 'files'
+2020-11-25 00:47:41 Debug: duration=1 rows=2 SELECT Flights.id AS `Flights__id`, Flights.user_id AS `Flights__user_id`, Flights.airline_id AS `Flights__airline_id`, Flights.title AS `Flights__title`, Flights.slug AS `Flights__slug`, Flights.body AS `Flights__body`, Flights.published AS `Flights__published`, Flights.created AS `Flights__created`, Flights.modified AS `Flights__modified`, Users.id AS `Users__id`, Users.email AS `Users__email`, Users.password AS `Users__password`, Users.uuid AS `Users__uuid`, Users.confirmed AS `Users__confirmed`, Users.created AS `Users__created`, Users.modified AS `Users__modified` FROM flights Flights INNER JOIN users Users ON Users.id = (Flights.user_id) LIMIT 20 OFFSET 0
+2020-11-25 00:47:41 Debug: duration=2 rows=2 SHOW FULL COLUMNS FROM `flights_tags`
+2020-11-25 00:47:41 Debug: duration=2 rows=3 SHOW INDEXES FROM `flights_tags`
+2020-11-25 00:47:41 Debug: duration=8 rows=2 SELECT * FROM information_schema.key_column_usage AS kcu
+            INNER JOIN information_schema.referential_constraints AS rc
+            ON (
+                kcu.CONSTRAINT_NAME = rc.CONSTRAINT_NAME
+                AND kcu.CONSTRAINT_SCHEMA = rc.CONSTRAINT_SCHEMA
+            )
+            WHERE kcu.TABLE_SCHEMA = 'flights' AND kcu.TABLE_NAME = 'flights_tags' AND rc.TABLE_NAME = 'flights_tags'
+2020-11-25 00:47:41 Debug: duration=1 rows=1 SHOW TABLE STATUS WHERE Name = 'flights_tags'
+2020-11-25 00:47:41 Debug: duration=1 rows=6 SHOW FULL COLUMNS FROM `i18n`
+2020-11-25 00:47:41 Debug: duration=2 rows=8 SHOW INDEXES FROM `i18n`
+2020-11-25 00:47:41 Debug: duration=8 rows=0 SELECT * FROM information_schema.key_column_usage AS kcu
+            INNER JOIN information_schema.referential_constraints AS rc
+            ON (
+                kcu.CONSTRAINT_NAME = rc.CONSTRAINT_NAME
+                AND kcu.CONSTRAINT_SCHEMA = rc.CONSTRAINT_SCHEMA
+            )
+            WHERE kcu.TABLE_SCHEMA = 'flights' AND kcu.TABLE_NAME = 'i18n' AND rc.TABLE_NAME = 'i18n'
+2020-11-25 00:47:41 Debug: duration=1 rows=1 SHOW TABLE STATUS WHERE Name = 'i18n'
+2020-11-25 00:47:41 Debug: duration=1 rows=2 SELECT FlightsTags.flight_id AS `Tags_CJoin__flight_id`, FlightsTags.tag_id AS `Tags_CJoin__tag_id`, Tags.id AS `Tags__id`, Tags.title AS `Tags__title`, Tags.created AS `Tags__created`, Tags.modified AS `Tags__modified`, Tags_title_translation.id AS `Tags_title_translation__id`, Tags_title_translation.content AS `Tags_title_translation__content` FROM tags Tags INNER JOIN flights_tags FlightsTags ON Tags.id = (FlightsTags.tag_id) LEFT JOIN i18n Tags_title_translation ON (Tags_title_translation.model = 'Tags' AND Tags_title_translation.field = 'title' AND Tags_title_translation.locale = 'fr_CA' AND Tags.id = (Tags_title_translation.foreign_key)) WHERE FlightsTags.flight_id in (16,17)
+2020-11-25 00:47:41 Debug: duration=1 rows=3 SHOW FULL COLUMNS FROM `flights_files`
+2020-11-25 00:47:41 Debug: duration=1 rows=3 SHOW INDEXES FROM `flights_files`
+2020-11-25 00:47:41 Debug: duration=9 rows=2 SELECT * FROM information_schema.key_column_usage AS kcu
+            INNER JOIN information_schema.referential_constraints AS rc
+            ON (
+                kcu.CONSTRAINT_NAME = rc.CONSTRAINT_NAME
+                AND kcu.CONSTRAINT_SCHEMA = rc.CONSTRAINT_SCHEMA
+            )
+            WHERE kcu.TABLE_SCHEMA = 'flights' AND kcu.TABLE_NAME = 'flights_files' AND rc.TABLE_NAME = 'flights_files'
+2020-11-25 00:47:41 Debug: duration=1 rows=1 SHOW TABLE STATUS WHERE Name = 'flights_files'
+2020-11-25 00:47:41 Debug: duration=1 rows=2 SELECT FlightsFiles.id AS `Files_CJoin__id`, FlightsFiles.flight_id AS `Files_CJoin__flight_id`, FlightsFiles.file_id AS `Files_CJoin__file_id`, Files.id AS `Files__id`, Files.name AS `Files__name`, Files.path AS `Files__path`, Files.created AS `Files__created`, Files.modified AS `Files__modified`, Files.status AS `Files__status` FROM files Files INNER JOIN flights_files FlightsFiles ON Files.id = (FlightsFiles.file_id) WHERE FlightsFiles.flight_id in (16,17)
+2020-11-25 00:47:41 Debug: duration=1 rows=1 SELECT (COUNT(*)) AS `count` FROM flights Flights INNER JOIN users Users ON Users.id = (Flights.user_id)
+2020-11-25 00:47:51 Debug: duration=1 rows=4 SHOW FULL COLUMNS FROM `countries`
+2020-11-25 00:47:51 Debug: duration=1 rows=2 SHOW INDEXES FROM `countries`
+2020-11-25 00:47:51 Debug: duration=7 rows=1 SELECT * FROM information_schema.key_column_usage AS kcu
+            INNER JOIN information_schema.referential_constraints AS rc
+            ON (
+                kcu.CONSTRAINT_NAME = rc.CONSTRAINT_NAME
+                AND kcu.CONSTRAINT_SCHEMA = rc.CONSTRAINT_SCHEMA
+            )
+            WHERE kcu.TABLE_SCHEMA = 'flights' AND kcu.TABLE_NAME = 'countries' AND rc.TABLE_NAME = 'countries'
+2020-11-25 00:47:51 Debug: duration=1 rows=1 SHOW TABLE STATUS WHERE Name = 'countries'
+2020-11-25 00:47:51 Debug: duration=1 rows=5 SHOW FULL COLUMNS FROM `airlines`
+2020-11-25 00:47:51 Debug: duration=1 rows=3 SHOW INDEXES FROM `airlines`
+2020-11-25 00:47:51 Debug: duration=9 rows=2 SELECT * FROM information_schema.key_column_usage AS kcu
+            INNER JOIN information_schema.referential_constraints AS rc
+            ON (
+                kcu.CONSTRAINT_NAME = rc.CONSTRAINT_NAME
+                AND kcu.CONSTRAINT_SCHEMA = rc.CONSTRAINT_SCHEMA
+            )
+            WHERE kcu.TABLE_SCHEMA = 'flights' AND kcu.TABLE_NAME = 'airlines' AND rc.TABLE_NAME = 'airlines'
+2020-11-25 00:47:51 Debug: duration=1 rows=1 SHOW TABLE STATUS WHERE Name = 'airlines'
+2020-11-25 00:47:51 Debug: duration=0 rows=7 SELECT Regions.id AS `Regions__id`, Regions.name AS `Regions__name` FROM regions Regions LIMIT 200
+2020-11-25 00:47:51 Debug: duration=1 rows=12 SELECT Countries.id AS `Countries__id`, Countries.name AS `Countries__name` FROM countries Countries LIMIT 200
+2020-11-25 00:47:54 Debug: duration=1 rows=5 SELECT Countries.id AS `Countries__id`, Countries.region_id AS `Countries__region_id`, Countries.code AS `Countries__code`, Countries.name AS `Countries__name` FROM countries Countries WHERE Countries.region_id = 2
+2020-11-25 00:48:02 Debug: duration=1 rows=7 SELECT Regions.id AS `Regions__id`, Regions.name AS `Regions__name` FROM regions Regions LIMIT 200
+2020-11-25 00:48:02 Debug: duration=1 rows=12 SELECT Countries.id AS `Countries__id`, Countries.name AS `Countries__name` FROM countries Countries LIMIT 200
+2020-11-25 00:48:03 Debug: duration=1 rows=7 SELECT Regions.id AS `Regions__id`, Regions.name AS `Regions__name` FROM regions Regions LIMIT 200
+2020-11-25 00:48:03 Debug: duration=0 rows=12 SELECT Countries.id AS `Countries__id`, Countries.name AS `Countries__name` FROM countries Countries LIMIT 200
+2020-11-25 00:48:04 Debug: duration=1 rows=2 SELECT Flights.id AS `Flights__id`, Flights.user_id AS `Flights__user_id`, Flights.airline_id AS `Flights__airline_id`, Flights.title AS `Flights__title`, Flights.slug AS `Flights__slug`, Flights.body AS `Flights__body`, Flights.published AS `Flights__published`, Flights.created AS `Flights__created`, Flights.modified AS `Flights__modified`, Users.id AS `Users__id`, Users.email AS `Users__email`, Users.password AS `Users__password`, Users.uuid AS `Users__uuid`, Users.confirmed AS `Users__confirmed`, Users.created AS `Users__created`, Users.modified AS `Users__modified` FROM flights Flights INNER JOIN users Users ON Users.id = (Flights.user_id) LIMIT 20 OFFSET 0
+2020-11-25 00:48:04 Debug: duration=1 rows=2 SELECT FlightsTags.flight_id AS `Tags_CJoin__flight_id`, FlightsTags.tag_id AS `Tags_CJoin__tag_id`, Tags.id AS `Tags__id`, Tags.title AS `Tags__title`, Tags.created AS `Tags__created`, Tags.modified AS `Tags__modified`, Tags_title_translation.id AS `Tags_title_translation__id`, Tags_title_translation.content AS `Tags_title_translation__content` FROM tags Tags INNER JOIN flights_tags FlightsTags ON Tags.id = (FlightsTags.tag_id) LEFT JOIN i18n Tags_title_translation ON (Tags_title_translation.model = 'Tags' AND Tags_title_translation.field = 'title' AND Tags_title_translation.locale = 'fr_CA' AND Tags.id = (Tags_title_translation.foreign_key)) WHERE FlightsTags.flight_id in (16,17)
+2020-11-25 00:48:04 Debug: duration=1 rows=2 SELECT FlightsFiles.id AS `Files_CJoin__id`, FlightsFiles.flight_id AS `Files_CJoin__flight_id`, FlightsFiles.file_id AS `Files_CJoin__file_id`, Files.id AS `Files__id`, Files.name AS `Files__name`, Files.path AS `Files__path`, Files.created AS `Files__created`, Files.modified AS `Files__modified`, Files.status AS `Files__status` FROM files Files INNER JOIN flights_files FlightsFiles ON Files.id = (FlightsFiles.file_id) WHERE FlightsFiles.flight_id in (16,17)
+2020-11-25 00:48:04 Debug: duration=0 rows=1 SELECT (COUNT(*)) AS `count` FROM flights Flights INNER JOIN users Users ON Users.id = (Flights.user_id)
+2020-11-25 00:48:11 Debug: duration=0 rows=3 SELECT Users.id AS `Users__id`, Users.email AS `Users__email`, Users.password AS `Users__password`, Users.uuid AS `Users__uuid`, Users.confirmed AS `Users__confirmed`, Users.created AS `Users__created`, Users.modified AS `Users__modified` FROM users Users LIMIT 20 OFFSET 0
+2020-11-25 00:48:11 Debug: duration=2 rows=1 SELECT (COUNT(*)) AS `count` FROM users Users
+2020-11-25 00:48:13 Debug: duration=1 rows=2 SELECT Flights.id AS `Flights__id`, Flights.user_id AS `Flights__user_id`, Flights.airline_id AS `Flights__airline_id`, Flights.title AS `Flights__title`, Flights.slug AS `Flights__slug`, Flights.body AS `Flights__body`, Flights.published AS `Flights__published`, Flights.created AS `Flights__created`, Flights.modified AS `Flights__modified`, Users.id AS `Users__id`, Users.email AS `Users__email`, Users.password AS `Users__password`, Users.uuid AS `Users__uuid`, Users.confirmed AS `Users__confirmed`, Users.created AS `Users__created`, Users.modified AS `Users__modified` FROM flights Flights INNER JOIN users Users ON Users.id = (Flights.user_id) LIMIT 20 OFFSET 0
+2020-11-25 00:48:13 Debug: duration=1 rows=2 SELECT FlightsTags.flight_id AS `Tags_CJoin__flight_id`, FlightsTags.tag_id AS `Tags_CJoin__tag_id`, Tags.id AS `Tags__id`, Tags.title AS `Tags__title`, Tags.created AS `Tags__created`, Tags.modified AS `Tags__modified`, Tags_title_translation.id AS `Tags_title_translation__id`, Tags_title_translation.content AS `Tags_title_translation__content` FROM tags Tags INNER JOIN flights_tags FlightsTags ON Tags.id = (FlightsTags.tag_id) LEFT JOIN i18n Tags_title_translation ON (Tags_title_translation.model = 'Tags' AND Tags_title_translation.field = 'title' AND Tags_title_translation.locale = 'fr_CA' AND Tags.id = (Tags_title_translation.foreign_key)) WHERE FlightsTags.flight_id in (16,17)
+2020-11-25 00:48:13 Debug: duration=1 rows=2 SELECT FlightsFiles.id AS `Files_CJoin__id`, FlightsFiles.flight_id AS `Files_CJoin__flight_id`, FlightsFiles.file_id AS `Files_CJoin__file_id`, Files.id AS `Files__id`, Files.name AS `Files__name`, Files.path AS `Files__path`, Files.created AS `Files__created`, Files.modified AS `Files__modified`, Files.status AS `Files__status` FROM files Files INNER JOIN flights_files FlightsFiles ON Files.id = (FlightsFiles.file_id) WHERE FlightsFiles.flight_id in (16,17)
+2020-11-25 00:48:13 Debug: duration=1 rows=1 SELECT (COUNT(*)) AS `count` FROM flights Flights INNER JOIN users Users ON Users.id = (Flights.user_id)
+2020-11-25 00:48:15 Debug: duration=1 rows=3 SELECT Tags.id AS `Tags__id`, Tags.title AS `Tags__title`, Tags_title_translation.id AS `Tags_title_translation__id`, Tags_title_translation.content AS `Tags_title_translation__content` FROM tags Tags LEFT JOIN i18n Tags_title_translation ON (Tags_title_translation.model = 'Tags' AND Tags_title_translation.field = 'title' AND Tags_title_translation.locale = 'fr_CA' AND Tags.id = (Tags_title_translation.foreign_key)) LIMIT 200
+2020-11-25 00:48:15 Debug: duration=0 rows=6 SELECT Files.id AS `Files__id`, Files.name AS `Files__name` FROM files Files LIMIT 200
+2020-11-25 00:48:17 Debug: duration=1 rows=2 SELECT Flights.id AS `Flights__id`, Flights.user_id AS `Flights__user_id`, Flights.airline_id AS `Flights__airline_id`, Flights.title AS `Flights__title`, Flights.slug AS `Flights__slug`, Flights.body AS `Flights__body`, Flights.published AS `Flights__published`, Flights.created AS `Flights__created`, Flights.modified AS `Flights__modified`, Users.id AS `Users__id`, Users.email AS `Users__email`, Users.password AS `Users__password`, Users.uuid AS `Users__uuid`, Users.confirmed AS `Users__confirmed`, Users.created AS `Users__created`, Users.modified AS `Users__modified` FROM flights Flights INNER JOIN users Users ON Users.id = (Flights.user_id) LIMIT 20 OFFSET 0
+2020-11-25 00:48:17 Debug: duration=1 rows=2 SELECT FlightsTags.flight_id AS `Tags_CJoin__flight_id`, FlightsTags.tag_id AS `Tags_CJoin__tag_id`, Tags.id AS `Tags__id`, Tags.title AS `Tags__title`, Tags.created AS `Tags__created`, Tags.modified AS `Tags__modified`, Tags_title_translation.id AS `Tags_title_translation__id`, Tags_title_translation.content AS `Tags_title_translation__content` FROM tags Tags INNER JOIN flights_tags FlightsTags ON Tags.id = (FlightsTags.tag_id) LEFT JOIN i18n Tags_title_translation ON (Tags_title_translation.model = 'Tags' AND Tags_title_translation.field = 'title' AND Tags_title_translation.locale = 'fr_CA' AND Tags.id = (Tags_title_translation.foreign_key)) WHERE FlightsTags.flight_id in (16,17)
+2020-11-25 00:48:17 Debug: duration=1 rows=2 SELECT FlightsFiles.id AS `Files_CJoin__id`, FlightsFiles.flight_id AS `Files_CJoin__flight_id`, FlightsFiles.file_id AS `Files_CJoin__file_id`, Files.id AS `Files__id`, Files.name AS `Files__name`, Files.path AS `Files__path`, Files.created AS `Files__created`, Files.modified AS `Files__modified`, Files.status AS `Files__status` FROM files Files INNER JOIN flights_files FlightsFiles ON Files.id = (FlightsFiles.file_id) WHERE FlightsFiles.flight_id in (16,17)
+2020-11-25 00:48:17 Debug: duration=1 rows=1 SELECT (COUNT(*)) AS `count` FROM flights Flights INNER JOIN users Users ON Users.id = (Flights.user_id)
+2020-11-25 00:48:19 Debug: duration=1 rows=7 SELECT Regions.id AS `Regions__id`, Regions.name AS `Regions__name` FROM regions Regions LIMIT 200
+2020-11-25 00:48:19 Debug: duration=0 rows=12 SELECT Countries.id AS `Countries__id`, Countries.name AS `Countries__name` FROM countries Countries LIMIT 200
+2020-11-25 00:48:24 Debug: duration=1 rows=3 SELECT Tags.id AS `Tags__id`, Tags.title AS `Tags__title`, Tags_title_translation.id AS `Tags_title_translation__id`, Tags_title_translation.content AS `Tags_title_translation__content` FROM tags Tags LEFT JOIN i18n Tags_title_translation ON (Tags_title_translation.model = 'Tags' AND Tags_title_translation.field = 'title' AND Tags_title_translation.locale = 'fr_CA' AND Tags.id = (Tags_title_translation.foreign_key)) LIMIT 200
+2020-11-25 00:48:24 Debug: duration=0 rows=6 SELECT Files.id AS `Files__id`, Files.name AS `Files__name` FROM files Files LIMIT 200
+2020-11-25 01:02:55 Debug: duration=2 rows=9 SHOW FULL COLUMNS FROM `flights`
+2020-11-25 01:02:55 Debug: duration=1 rows=4 SHOW INDEXES FROM `flights`
+2020-11-25 01:02:55 Debug: duration=8 rows=2 SELECT * FROM information_schema.key_column_usage AS kcu
+            INNER JOIN information_schema.referential_constraints AS rc
+            ON (
+                kcu.CONSTRAINT_NAME = rc.CONSTRAINT_NAME
+                AND kcu.CONSTRAINT_SCHEMA = rc.CONSTRAINT_SCHEMA
+            )
+            WHERE kcu.TABLE_SCHEMA = 'flights' AND kcu.TABLE_NAME = 'flights' AND rc.TABLE_NAME = 'flights'
+2020-11-25 01:02:55 Debug: duration=1 rows=1 SHOW TABLE STATUS WHERE Name = 'flights'
+2020-11-25 01:02:55 Debug: duration=2 rows=7 SHOW FULL COLUMNS FROM `users`
+2020-11-25 01:02:55 Debug: duration=1 rows=1 SHOW INDEXES FROM `users`
+2020-11-25 01:02:55 Debug: duration=8 rows=0 SELECT * FROM information_schema.key_column_usage AS kcu
+            INNER JOIN information_schema.referential_constraints AS rc
+            ON (
+                kcu.CONSTRAINT_NAME = rc.CONSTRAINT_NAME
+                AND kcu.CONSTRAINT_SCHEMA = rc.CONSTRAINT_SCHEMA
+            )
+            WHERE kcu.TABLE_SCHEMA = 'flights' AND kcu.TABLE_NAME = 'users' AND rc.TABLE_NAME = 'users'
+2020-11-25 01:02:55 Debug: duration=1 rows=1 SHOW TABLE STATUS WHERE Name = 'users'
+2020-11-25 01:02:55 Debug: duration=1 rows=4 SHOW FULL COLUMNS FROM `tags`
+2020-11-25 01:02:55 Debug: duration=1 rows=2 SHOW INDEXES FROM `tags`
+2020-11-25 01:02:55 Debug: duration=9 rows=0 SELECT * FROM information_schema.key_column_usage AS kcu
+            INNER JOIN information_schema.referential_constraints AS rc
+            ON (
+                kcu.CONSTRAINT_NAME = rc.CONSTRAINT_NAME
+                AND kcu.CONSTRAINT_SCHEMA = rc.CONSTRAINT_SCHEMA
+            )
+            WHERE kcu.TABLE_SCHEMA = 'flights' AND kcu.TABLE_NAME = 'tags' AND rc.TABLE_NAME = 'tags'
+2020-11-25 01:02:55 Debug: duration=1 rows=1 SHOW TABLE STATUS WHERE Name = 'tags'
+2020-11-25 01:02:55 Debug: duration=2 rows=6 SHOW FULL COLUMNS FROM `files`
+2020-11-25 01:02:55 Debug: duration=1 rows=1 SHOW INDEXES FROM `files`
+2020-11-25 01:02:55 Debug: duration=7 rows=0 SELECT * FROM information_schema.key_column_usage AS kcu
+            INNER JOIN information_schema.referential_constraints AS rc
+            ON (
+                kcu.CONSTRAINT_NAME = rc.CONSTRAINT_NAME
+                AND kcu.CONSTRAINT_SCHEMA = rc.CONSTRAINT_SCHEMA
+            )
+            WHERE kcu.TABLE_SCHEMA = 'flights' AND kcu.TABLE_NAME = 'files' AND rc.TABLE_NAME = 'files'
+2020-11-25 01:02:55 Debug: duration=1 rows=1 SHOW TABLE STATUS WHERE Name = 'files'
+2020-11-25 01:02:55 Debug: duration=1 rows=2 SELECT Flights.id AS `Flights__id`, Flights.user_id AS `Flights__user_id`, Flights.airline_id AS `Flights__airline_id`, Flights.title AS `Flights__title`, Flights.slug AS `Flights__slug`, Flights.body AS `Flights__body`, Flights.published AS `Flights__published`, Flights.created AS `Flights__created`, Flights.modified AS `Flights__modified`, Users.id AS `Users__id`, Users.email AS `Users__email`, Users.password AS `Users__password`, Users.uuid AS `Users__uuid`, Users.confirmed AS `Users__confirmed`, Users.created AS `Users__created`, Users.modified AS `Users__modified` FROM flights Flights INNER JOIN users Users ON Users.id = (Flights.user_id) LIMIT 20 OFFSET 0
+2020-11-25 01:02:55 Debug: duration=2 rows=2 SHOW FULL COLUMNS FROM `flights_tags`
+2020-11-25 01:02:55 Debug: duration=1 rows=3 SHOW INDEXES FROM `flights_tags`
+2020-11-25 01:02:55 Debug: duration=8 rows=2 SELECT * FROM information_schema.key_column_usage AS kcu
+            INNER JOIN information_schema.referential_constraints AS rc
+            ON (
+                kcu.CONSTRAINT_NAME = rc.CONSTRAINT_NAME
+                AND kcu.CONSTRAINT_SCHEMA = rc.CONSTRAINT_SCHEMA
+            )
+            WHERE kcu.TABLE_SCHEMA = 'flights' AND kcu.TABLE_NAME = 'flights_tags' AND rc.TABLE_NAME = 'flights_tags'
+2020-11-25 01:02:55 Debug: duration=1 rows=1 SHOW TABLE STATUS WHERE Name = 'flights_tags'
+2020-11-25 01:02:55 Debug: duration=1 rows=6 SHOW FULL COLUMNS FROM `i18n`
+2020-11-25 01:02:55 Debug: duration=1 rows=8 SHOW INDEXES FROM `i18n`
+2020-11-25 01:02:55 Debug: duration=7 rows=0 SELECT * FROM information_schema.key_column_usage AS kcu
+            INNER JOIN information_schema.referential_constraints AS rc
+            ON (
+                kcu.CONSTRAINT_NAME = rc.CONSTRAINT_NAME
+                AND kcu.CONSTRAINT_SCHEMA = rc.CONSTRAINT_SCHEMA
+            )
+            WHERE kcu.TABLE_SCHEMA = 'flights' AND kcu.TABLE_NAME = 'i18n' AND rc.TABLE_NAME = 'i18n'
+2020-11-25 01:02:55 Debug: duration=1 rows=1 SHOW TABLE STATUS WHERE Name = 'i18n'
+2020-11-25 01:02:55 Debug: duration=1 rows=2 SELECT FlightsTags.flight_id AS `Tags_CJoin__flight_id`, FlightsTags.tag_id AS `Tags_CJoin__tag_id`, Tags.id AS `Tags__id`, Tags.title AS `Tags__title`, Tags.created AS `Tags__created`, Tags.modified AS `Tags__modified`, Tags_title_translation.id AS `Tags_title_translation__id`, Tags_title_translation.content AS `Tags_title_translation__content` FROM tags Tags INNER JOIN flights_tags FlightsTags ON Tags.id = (FlightsTags.tag_id) LEFT JOIN i18n Tags_title_translation ON (Tags_title_translation.model = 'Tags' AND Tags_title_translation.field = 'title' AND Tags_title_translation.locale = 'fr_CA' AND Tags.id = (Tags_title_translation.foreign_key)) WHERE FlightsTags.flight_id in (16,17)
+2020-11-25 01:02:55 Debug: duration=2 rows=3 SHOW FULL COLUMNS FROM `flights_files`
+2020-11-25 01:02:55 Debug: duration=1 rows=3 SHOW INDEXES FROM `flights_files`
+2020-11-25 01:02:55 Debug: duration=7 rows=2 SELECT * FROM information_schema.key_column_usage AS kcu
+            INNER JOIN information_schema.referential_constraints AS rc
+            ON (
+                kcu.CONSTRAINT_NAME = rc.CONSTRAINT_NAME
+                AND kcu.CONSTRAINT_SCHEMA = rc.CONSTRAINT_SCHEMA
+            )
+            WHERE kcu.TABLE_SCHEMA = 'flights' AND kcu.TABLE_NAME = 'flights_files' AND rc.TABLE_NAME = 'flights_files'
+2020-11-25 01:02:55 Debug: duration=1 rows=1 SHOW TABLE STATUS WHERE Name = 'flights_files'
+2020-11-25 01:02:55 Debug: duration=1 rows=2 SELECT FlightsFiles.id AS `Files_CJoin__id`, FlightsFiles.flight_id AS `Files_CJoin__flight_id`, FlightsFiles.file_id AS `Files_CJoin__file_id`, Files.id AS `Files__id`, Files.name AS `Files__name`, Files.path AS `Files__path`, Files.created AS `Files__created`, Files.modified AS `Files__modified`, Files.status AS `Files__status` FROM files Files INNER JOIN flights_files FlightsFiles ON Files.id = (FlightsFiles.file_id) WHERE FlightsFiles.flight_id in (16,17)
+2020-11-25 01:02:55 Debug: duration=0 rows=1 SELECT (COUNT(*)) AS `count` FROM flights Flights INNER JOIN users Users ON Users.id = (Flights.user_id)
+2020-11-25 01:02:59 Debug: duration=2 rows=6 SHOW FULL COLUMNS FROM `bookings`
+2020-11-25 01:02:59 Debug: duration=2 rows=2 SHOW INDEXES FROM `bookings`
+2020-11-25 01:02:59 Debug: duration=8 rows=1 SELECT * FROM information_schema.key_column_usage AS kcu
+            INNER JOIN information_schema.referential_constraints AS rc
+            ON (
+                kcu.CONSTRAINT_NAME = rc.CONSTRAINT_NAME
+                AND kcu.CONSTRAINT_SCHEMA = rc.CONSTRAINT_SCHEMA
+            )
+            WHERE kcu.TABLE_SCHEMA = 'flights' AND kcu.TABLE_NAME = 'bookings' AND rc.TABLE_NAME = 'bookings'
+2020-11-25 01:02:59 Debug: duration=1 rows=1 SHOW TABLE STATUS WHERE Name = 'bookings'
+2020-11-25 01:02:59 Debug: duration=1 rows=5 SHOW FULL COLUMNS FROM `airlines`
+2020-11-25 01:02:59 Debug: duration=1 rows=3 SHOW INDEXES FROM `airlines`
+2020-11-25 01:02:59 Debug: duration=7 rows=2 SELECT * FROM information_schema.key_column_usage AS kcu
+            INNER JOIN information_schema.referential_constraints AS rc
+            ON (
+                kcu.CONSTRAINT_NAME = rc.CONSTRAINT_NAME
+                AND kcu.CONSTRAINT_SCHEMA = rc.CONSTRAINT_SCHEMA
+            )
+            WHERE kcu.TABLE_SCHEMA = 'flights' AND kcu.TABLE_NAME = 'airlines' AND rc.TABLE_NAME = 'airlines'
+2020-11-25 01:02:59 Debug: duration=2 rows=1 SHOW TABLE STATUS WHERE Name = 'airlines'
+2020-11-25 01:02:59 Debug: duration=1 rows=1 SELECT Flights.id AS `Flights__id`, Flights.user_id AS `Flights__user_id`, Flights.airline_id AS `Flights__airline_id`, Flights.title AS `Flights__title`, Flights.slug AS `Flights__slug`, Flights.body AS `Flights__body`, Flights.published AS `Flights__published`, Flights.created AS `Flights__created`, Flights.modified AS `Flights__modified`, Airlines.id AS `Airlines__id`, Airlines.region_id AS `Airlines__region_id`, Airlines.country_id AS `Airlines__country_id`, Airlines.code AS `Airlines__code`, Airlines.name AS `Airlines__name` FROM flights Flights INNER JOIN airlines Airlines ON Airlines.id = (Flights.airline_id) WHERE Flights.slug = 'Calgary-Vancouver' LIMIT 1
+2020-11-25 01:02:59 Debug: duration=1 rows=2 SELECT Bookings.id AS `Bookings__id`, Bookings.flight_id AS `Bookings__flight_id`, Bookings.name AS `Bookings__name`, Bookings.booking AS `Bookings__booking`, Bookings.created AS `Bookings__created`, Bookings.modified AS `Bookings__modified`, Bookings_name_translation.id AS `Bookings_name_translation__id`, Bookings_name_translation.locale AS `Bookings_name_translation__locale`, Bookings_name_translation.model AS `Bookings_name_translation__model`, Bookings_name_translation.foreign_key AS `Bookings_name_translation__foreign_key`, Bookings_name_translation.field AS `Bookings_name_translation__field`, Bookings_name_translation.content AS `Bookings_name_translation__content`, Bookings_booking_translation.id AS `Bookings_booking_translation__id`, Bookings_booking_translation.locale AS `Bookings_booking_translation__locale`, Bookings_booking_translation.model AS `Bookings_booking_translation__model`, Bookings_booking_translation.foreign_key AS `Bookings_booking_translation__foreign_key`, Bookings_booking_translation.field AS `Bookings_booking_translation__field`, Bookings_booking_translation.content AS `Bookings_booking_translation__content` FROM bookings Bookings LEFT JOIN i18n Bookings_name_translation ON (Bookings_name_translation.model = 'Bookings' AND Bookings_name_translation.field = 'name' AND Bookings_name_translation.locale = 'fr_CA' AND Bookings.id = (Bookings_name_translation.foreign_key)) LEFT JOIN i18n Bookings_booking_translation ON (Bookings_booking_translation.model = 'Bookings' AND Bookings_booking_translation.field = 'booking' AND Bookings_booking_translation.locale = 'fr_CA' AND Bookings.id = (Bookings_booking_translation.foreign_key)) WHERE Bookings.flight_id in (17)
+2020-11-25 01:02:59 Debug: duration=1 rows=1 SELECT FlightsTags.flight_id AS `Tags_CJoin__flight_id`, FlightsTags.tag_id AS `Tags_CJoin__tag_id`, Tags.id AS `Tags__id`, Tags.title AS `Tags__title`, Tags.created AS `Tags__created`, Tags.modified AS `Tags__modified`, Tags_title_translation.id AS `Tags_title_translation__id`, Tags_title_translation.content AS `Tags_title_translation__content` FROM tags Tags INNER JOIN flights_tags FlightsTags ON Tags.id = (FlightsTags.tag_id) LEFT JOIN i18n Tags_title_translation ON (Tags_title_translation.model = 'Tags' AND Tags_title_translation.field = 'title' AND Tags_title_translation.locale = 'fr_CA' AND Tags.id = (Tags_title_translation.foreign_key)) WHERE FlightsTags.flight_id in (17)
+2020-11-25 01:02:59 Debug: duration=1 rows=1 SELECT FlightsFiles.id AS `Files_CJoin__id`, FlightsFiles.flight_id AS `Files_CJoin__flight_id`, FlightsFiles.file_id AS `Files_CJoin__file_id`, Files.id AS `Files__id`, Files.name AS `Files__name`, Files.path AS `Files__path`, Files.created AS `Files__created`, Files.modified AS `Files__modified`, Files.status AS `Files__status` FROM files Files INNER JOIN flights_files FlightsFiles ON Files.id = (FlightsFiles.file_id) WHERE FlightsFiles.flight_id in (17)
+2020-11-25 01:02:59 Debug: duration=1 rows=1 SELECT Flights.id AS `Flights__id`, Flights.user_id AS `Flights__user_id`, Flights.airline_id AS `Flights__airline_id`, Flights.title AS `Flights__title`, Flights.slug AS `Flights__slug`, Flights.body AS `Flights__body`, Flights.published AS `Flights__published`, Flights.created AS `Flights__created`, Flights.modified AS `Flights__modified`, Airlines.id AS `Airlines__id`, Airlines.region_id AS `Airlines__region_id`, Airlines.country_id AS `Airlines__country_id`, Airlines.code AS `Airlines__code`, Airlines.name AS `Airlines__name` FROM flights Flights INNER JOIN airlines Airlines ON Airlines.id = (Flights.airline_id) WHERE Flights.slug = 'Calgary-Vancouver' LIMIT 1
+2020-11-25 01:02:59 Debug: duration=1 rows=2 SELECT Bookings.id AS `Bookings__id`, Bookings.flight_id AS `Bookings__flight_id`, Bookings.name AS `Bookings__name`, Bookings.booking AS `Bookings__booking`, Bookings.created AS `Bookings__created`, Bookings.modified AS `Bookings__modified`, Bookings_name_translation.id AS `Bookings_name_translation__id`, Bookings_name_translation.locale AS `Bookings_name_translation__locale`, Bookings_name_translation.model AS `Bookings_name_translation__model`, Bookings_name_translation.foreign_key AS `Bookings_name_translation__foreign_key`, Bookings_name_translation.field AS `Bookings_name_translation__field`, Bookings_name_translation.content AS `Bookings_name_translation__content`, Bookings_booking_translation.id AS `Bookings_booking_translation__id`, Bookings_booking_translation.locale AS `Bookings_booking_translation__locale`, Bookings_booking_translation.model AS `Bookings_booking_translation__model`, Bookings_booking_translation.foreign_key AS `Bookings_booking_translation__foreign_key`, Bookings_booking_translation.field AS `Bookings_booking_translation__field`, Bookings_booking_translation.content AS `Bookings_booking_translation__content` FROM bookings Bookings LEFT JOIN i18n Bookings_name_translation ON (Bookings_name_translation.model = 'Bookings' AND Bookings_name_translation.field = 'name' AND Bookings_name_translation.locale = 'fr_CA' AND Bookings.id = (Bookings_name_translation.foreign_key)) LEFT JOIN i18n Bookings_booking_translation ON (Bookings_booking_translation.model = 'Bookings' AND Bookings_booking_translation.field = 'booking' AND Bookings_booking_translation.locale = 'fr_CA' AND Bookings.id = (Bookings_booking_translation.foreign_key)) WHERE Bookings.flight_id in (17)
+2020-11-25 01:02:59 Debug: duration=1 rows=1 SELECT FlightsTags.flight_id AS `Tags_CJoin__flight_id`, FlightsTags.tag_id AS `Tags_CJoin__tag_id`, Tags.id AS `Tags__id`, Tags.title AS `Tags__title`, Tags.created AS `Tags__created`, Tags.modified AS `Tags__modified`, Tags_title_translation.id AS `Tags_title_translation__id`, Tags_title_translation.content AS `Tags_title_translation__content` FROM tags Tags INNER JOIN flights_tags FlightsTags ON Tags.id = (FlightsTags.tag_id) LEFT JOIN i18n Tags_title_translation ON (Tags_title_translation.model = 'Tags' AND Tags_title_translation.field = 'title' AND Tags_title_translation.locale = 'fr_CA' AND Tags.id = (Tags_title_translation.foreign_key)) WHERE FlightsTags.flight_id in (17)
+2020-11-25 01:02:59 Debug: duration=1 rows=1 SELECT FlightsFiles.id AS `Files_CJoin__id`, FlightsFiles.flight_id AS `Files_CJoin__flight_id`, FlightsFiles.file_id AS `Files_CJoin__file_id`, Files.id AS `Files__id`, Files.name AS `Files__name`, Files.path AS `Files__path`, Files.created AS `Files__created`, Files.modified AS `Files__modified`, Files.status AS `Files__status` FROM files Files INNER JOIN flights_files FlightsFiles ON Files.id = (FlightsFiles.file_id) WHERE FlightsFiles.flight_id in (17)
+2020-11-25 01:03:58 Debug: duration=1 rows=1 SELECT Flights.id AS `Flights__id`, Flights.user_id AS `Flights__user_id`, Flights.airline_id AS `Flights__airline_id`, Flights.title AS `Flights__title`, Flights.slug AS `Flights__slug`, Flights.body AS `Flights__body`, Flights.published AS `Flights__published`, Flights.created AS `Flights__created`, Flights.modified AS `Flights__modified`, Airlines.id AS `Airlines__id`, Airlines.region_id AS `Airlines__region_id`, Airlines.country_id AS `Airlines__country_id`, Airlines.code AS `Airlines__code`, Airlines.name AS `Airlines__name` FROM flights Flights INNER JOIN airlines Airlines ON Airlines.id = (Flights.airline_id) WHERE Flights.slug = 'Calgary-Vancouver' LIMIT 1
+2020-11-25 01:03:58 Debug: duration=1 rows=2 SELECT Bookings.id AS `Bookings__id`, Bookings.flight_id AS `Bookings__flight_id`, Bookings.name AS `Bookings__name`, Bookings.booking AS `Bookings__booking`, Bookings.created AS `Bookings__created`, Bookings.modified AS `Bookings__modified`, Bookings_name_translation.id AS `Bookings_name_translation__id`, Bookings_name_translation.locale AS `Bookings_name_translation__locale`, Bookings_name_translation.model AS `Bookings_name_translation__model`, Bookings_name_translation.foreign_key AS `Bookings_name_translation__foreign_key`, Bookings_name_translation.field AS `Bookings_name_translation__field`, Bookings_name_translation.content AS `Bookings_name_translation__content`, Bookings_booking_translation.id AS `Bookings_booking_translation__id`, Bookings_booking_translation.locale AS `Bookings_booking_translation__locale`, Bookings_booking_translation.model AS `Bookings_booking_translation__model`, Bookings_booking_translation.foreign_key AS `Bookings_booking_translation__foreign_key`, Bookings_booking_translation.field AS `Bookings_booking_translation__field`, Bookings_booking_translation.content AS `Bookings_booking_translation__content` FROM bookings Bookings LEFT JOIN i18n Bookings_name_translation ON (Bookings_name_translation.model = 'Bookings' AND Bookings_name_translation.field = 'name' AND Bookings_name_translation.locale = 'fr_CA' AND Bookings.id = (Bookings_name_translation.foreign_key)) LEFT JOIN i18n Bookings_booking_translation ON (Bookings_booking_translation.model = 'Bookings' AND Bookings_booking_translation.field = 'booking' AND Bookings_booking_translation.locale = 'fr_CA' AND Bookings.id = (Bookings_booking_translation.foreign_key)) WHERE Bookings.flight_id in (17)
+2020-11-25 01:03:58 Debug: duration=1 rows=1 SELECT FlightsTags.flight_id AS `Tags_CJoin__flight_id`, FlightsTags.tag_id AS `Tags_CJoin__tag_id`, Tags.id AS `Tags__id`, Tags.title AS `Tags__title`, Tags.created AS `Tags__created`, Tags.modified AS `Tags__modified`, Tags_title_translation.id AS `Tags_title_translation__id`, Tags_title_translation.content AS `Tags_title_translation__content` FROM tags Tags INNER JOIN flights_tags FlightsTags ON Tags.id = (FlightsTags.tag_id) LEFT JOIN i18n Tags_title_translation ON (Tags_title_translation.model = 'Tags' AND Tags_title_translation.field = 'title' AND Tags_title_translation.locale = 'fr_CA' AND Tags.id = (Tags_title_translation.foreign_key)) WHERE FlightsTags.flight_id in (17)
+2020-11-25 01:03:58 Debug: duration=1 rows=1 SELECT FlightsFiles.id AS `Files_CJoin__id`, FlightsFiles.flight_id AS `Files_CJoin__flight_id`, FlightsFiles.file_id AS `Files_CJoin__file_id`, Files.id AS `Files__id`, Files.name AS `Files__name`, Files.path AS `Files__path`, Files.created AS `Files__created`, Files.modified AS `Files__modified`, Files.status AS `Files__status` FROM files Files INNER JOIN flights_files FlightsFiles ON Files.id = (FlightsFiles.file_id) WHERE FlightsFiles.flight_id in (17)
+2020-11-25 01:04:00 Debug: duration=1 rows=2 SELECT Flights.id AS `Flights__id`, Flights.user_id AS `Flights__user_id`, Flights.airline_id AS `Flights__airline_id`, Flights.title AS `Flights__title`, Flights.slug AS `Flights__slug`, Flights.body AS `Flights__body`, Flights.published AS `Flights__published`, Flights.created AS `Flights__created`, Flights.modified AS `Flights__modified`, Users.id AS `Users__id`, Users.email AS `Users__email`, Users.password AS `Users__password`, Users.uuid AS `Users__uuid`, Users.confirmed AS `Users__confirmed`, Users.created AS `Users__created`, Users.modified AS `Users__modified` FROM flights Flights INNER JOIN users Users ON Users.id = (Flights.user_id) LIMIT 20 OFFSET 0
+2020-11-25 01:04:00 Debug: duration=1 rows=2 SELECT FlightsTags.flight_id AS `Tags_CJoin__flight_id`, FlightsTags.tag_id AS `Tags_CJoin__tag_id`, Tags.id AS `Tags__id`, Tags.title AS `Tags__title`, Tags.created AS `Tags__created`, Tags.modified AS `Tags__modified`, Tags_title_translation.id AS `Tags_title_translation__id`, Tags_title_translation.content AS `Tags_title_translation__content` FROM tags Tags INNER JOIN flights_tags FlightsTags ON Tags.id = (FlightsTags.tag_id) LEFT JOIN i18n Tags_title_translation ON (Tags_title_translation.model = 'Tags' AND Tags_title_translation.field = 'title' AND Tags_title_translation.locale = 'fr_CA' AND Tags.id = (Tags_title_translation.foreign_key)) WHERE FlightsTags.flight_id in (16,17)
+2020-11-25 01:04:00 Debug: duration=1 rows=2 SELECT FlightsFiles.id AS `Files_CJoin__id`, FlightsFiles.flight_id AS `Files_CJoin__flight_id`, FlightsFiles.file_id AS `Files_CJoin__file_id`, Files.id AS `Files__id`, Files.name AS `Files__name`, Files.path AS `Files__path`, Files.created AS `Files__created`, Files.modified AS `Files__modified`, Files.status AS `Files__status` FROM files Files INNER JOIN flights_files FlightsFiles ON Files.id = (FlightsFiles.file_id) WHERE FlightsFiles.flight_id in (16,17)
+2020-11-25 01:04:00 Debug: duration=1 rows=1 SELECT (COUNT(*)) AS `count` FROM flights Flights INNER JOIN users Users ON Users.id = (Flights.user_id)
+2020-11-25 01:04:01 Debug: duration=1 rows=2 SELECT Flights.id AS `Flights__id`, Flights.user_id AS `Flights__user_id`, Flights.airline_id AS `Flights__airline_id`, Flights.title AS `Flights__title`, Flights.slug AS `Flights__slug`, Flights.body AS `Flights__body`, Flights.published AS `Flights__published`, Flights.created AS `Flights__created`, Flights.modified AS `Flights__modified`, Users.id AS `Users__id`, Users.email AS `Users__email`, Users.password AS `Users__password`, Users.uuid AS `Users__uuid`, Users.confirmed AS `Users__confirmed`, Users.created AS `Users__created`, Users.modified AS `Users__modified` FROM flights Flights INNER JOIN users Users ON Users.id = (Flights.user_id) LIMIT 20 OFFSET 0
+2020-11-25 01:04:01 Debug: duration=1 rows=2 SELECT FlightsTags.flight_id AS `Tags_CJoin__flight_id`, FlightsTags.tag_id AS `Tags_CJoin__tag_id`, Tags.id AS `Tags__id`, Tags.title AS `Tags__title`, Tags.created AS `Tags__created`, Tags.modified AS `Tags__modified`, Tags_title_translation.id AS `Tags_title_translation__id`, Tags_title_translation.content AS `Tags_title_translation__content` FROM tags Tags INNER JOIN flights_tags FlightsTags ON Tags.id = (FlightsTags.tag_id) LEFT JOIN i18n Tags_title_translation ON (Tags_title_translation.model = 'Tags' AND Tags_title_translation.field = 'title' AND Tags_title_translation.locale = 'fr_CA' AND Tags.id = (Tags_title_translation.foreign_key)) WHERE FlightsTags.flight_id in (16,17)
+2020-11-25 01:04:01 Debug: duration=1 rows=2 SELECT FlightsFiles.id AS `Files_CJoin__id`, FlightsFiles.flight_id AS `Files_CJoin__flight_id`, FlightsFiles.file_id AS `Files_CJoin__file_id`, Files.id AS `Files__id`, Files.name AS `Files__name`, Files.path AS `Files__path`, Files.created AS `Files__created`, Files.modified AS `Files__modified`, Files.status AS `Files__status` FROM files Files INNER JOIN flights_files FlightsFiles ON Files.id = (FlightsFiles.file_id) WHERE FlightsFiles.flight_id in (16,17)
+2020-11-25 01:04:01 Debug: duration=1 rows=1 SELECT (COUNT(*)) AS `count` FROM flights Flights INNER JOIN users Users ON Users.id = (Flights.user_id)
+2020-11-25 01:04:03 Debug: duration=1 rows=1 SELECT Flights.id AS `Flights__id`, Flights.user_id AS `Flights__user_id`, Flights.airline_id AS `Flights__airline_id`, Flights.title AS `Flights__title`, Flights.slug AS `Flights__slug`, Flights.body AS `Flights__body`, Flights.published AS `Flights__published`, Flights.created AS `Flights__created`, Flights.modified AS `Flights__modified`, Airlines.id AS `Airlines__id`, Airlines.region_id AS `Airlines__region_id`, Airlines.country_id AS `Airlines__country_id`, Airlines.code AS `Airlines__code`, Airlines.name AS `Airlines__name` FROM flights Flights INNER JOIN airlines Airlines ON Airlines.id = (Flights.airline_id) WHERE Flights.slug = 'Calgary-Vancouver' LIMIT 1
+2020-11-25 01:04:03 Debug: duration=1 rows=2 SELECT Bookings.id AS `Bookings__id`, Bookings.flight_id AS `Bookings__flight_id`, Bookings.name AS `Bookings__name`, Bookings.booking AS `Bookings__booking`, Bookings.created AS `Bookings__created`, Bookings.modified AS `Bookings__modified`, Bookings_name_translation.id AS `Bookings_name_translation__id`, Bookings_name_translation.locale AS `Bookings_name_translation__locale`, Bookings_name_translation.model AS `Bookings_name_translation__model`, Bookings_name_translation.foreign_key AS `Bookings_name_translation__foreign_key`, Bookings_name_translation.field AS `Bookings_name_translation__field`, Bookings_name_translation.content AS `Bookings_name_translation__content`, Bookings_booking_translation.id AS `Bookings_booking_translation__id`, Bookings_booking_translation.locale AS `Bookings_booking_translation__locale`, Bookings_booking_translation.model AS `Bookings_booking_translation__model`, Bookings_booking_translation.foreign_key AS `Bookings_booking_translation__foreign_key`, Bookings_booking_translation.field AS `Bookings_booking_translation__field`, Bookings_booking_translation.content AS `Bookings_booking_translation__content` FROM bookings Bookings LEFT JOIN i18n Bookings_name_translation ON (Bookings_name_translation.model = 'Bookings' AND Bookings_name_translation.field = 'name' AND Bookings_name_translation.locale = 'fr_CA' AND Bookings.id = (Bookings_name_translation.foreign_key)) LEFT JOIN i18n Bookings_booking_translation ON (Bookings_booking_translation.model = 'Bookings' AND Bookings_booking_translation.field = 'booking' AND Bookings_booking_translation.locale = 'fr_CA' AND Bookings.id = (Bookings_booking_translation.foreign_key)) WHERE Bookings.flight_id in (17)
+2020-11-25 01:04:03 Debug: duration=1 rows=1 SELECT FlightsTags.flight_id AS `Tags_CJoin__flight_id`, FlightsTags.tag_id AS `Tags_CJoin__tag_id`, Tags.id AS `Tags__id`, Tags.title AS `Tags__title`, Tags.created AS `Tags__created`, Tags.modified AS `Tags__modified`, Tags_title_translation.id AS `Tags_title_translation__id`, Tags_title_translation.content AS `Tags_title_translation__content` FROM tags Tags INNER JOIN flights_tags FlightsTags ON Tags.id = (FlightsTags.tag_id) LEFT JOIN i18n Tags_title_translation ON (Tags_title_translation.model = 'Tags' AND Tags_title_translation.field = 'title' AND Tags_title_translation.locale = 'fr_CA' AND Tags.id = (Tags_title_translation.foreign_key)) WHERE FlightsTags.flight_id in (17)
+2020-11-25 01:04:03 Debug: duration=1 rows=1 SELECT FlightsFiles.id AS `Files_CJoin__id`, FlightsFiles.flight_id AS `Files_CJoin__flight_id`, FlightsFiles.file_id AS `Files_CJoin__file_id`, Files.id AS `Files__id`, Files.name AS `Files__name`, Files.path AS `Files__path`, Files.created AS `Files__created`, Files.modified AS `Files__modified`, Files.status AS `Files__status` FROM files Files INNER JOIN flights_files FlightsFiles ON Files.id = (FlightsFiles.file_id) WHERE FlightsFiles.flight_id in (17)
+2020-11-25 01:05:05 Debug: duration=2 rows=9 SHOW FULL COLUMNS FROM `flights`
+2020-11-25 01:05:05 Debug: duration=1 rows=4 SHOW INDEXES FROM `flights`
+2020-11-25 01:05:05 Debug: duration=8 rows=2 SELECT * FROM information_schema.key_column_usage AS kcu
+            INNER JOIN information_schema.referential_constraints AS rc
+            ON (
+                kcu.CONSTRAINT_NAME = rc.CONSTRAINT_NAME
+                AND kcu.CONSTRAINT_SCHEMA = rc.CONSTRAINT_SCHEMA
+            )
+            WHERE kcu.TABLE_SCHEMA = 'flights' AND kcu.TABLE_NAME = 'flights' AND rc.TABLE_NAME = 'flights'
+2020-11-25 01:05:05 Debug: duration=1 rows=1 SHOW TABLE STATUS WHERE Name = 'flights'
+2020-11-25 01:05:05 Debug: duration=2 rows=6 SHOW FULL COLUMNS FROM `bookings`
+2020-11-25 01:05:05 Debug: duration=2 rows=2 SHOW INDEXES FROM `bookings`
+2020-11-25 01:05:05 Debug: duration=8 rows=1 SELECT * FROM information_schema.key_column_usage AS kcu
+            INNER JOIN information_schema.referential_constraints AS rc
+            ON (
+                kcu.CONSTRAINT_NAME = rc.CONSTRAINT_NAME
+                AND kcu.CONSTRAINT_SCHEMA = rc.CONSTRAINT_SCHEMA
+            )
+            WHERE kcu.TABLE_SCHEMA = 'flights' AND kcu.TABLE_NAME = 'bookings' AND rc.TABLE_NAME = 'bookings'
+2020-11-25 01:05:05 Debug: duration=1 rows=1 SHOW TABLE STATUS WHERE Name = 'bookings'
+2020-11-25 01:05:05 Debug: duration=1 rows=4 SHOW FULL COLUMNS FROM `tags`
+2020-11-25 01:05:05 Debug: duration=1 rows=2 SHOW INDEXES FROM `tags`
+2020-11-25 01:05:05 Debug: duration=8 rows=0 SELECT * FROM information_schema.key_column_usage AS kcu
+            INNER JOIN information_schema.referential_constraints AS rc
+            ON (
+                kcu.CONSTRAINT_NAME = rc.CONSTRAINT_NAME
+                AND kcu.CONSTRAINT_SCHEMA = rc.CONSTRAINT_SCHEMA
+            )
+            WHERE kcu.TABLE_SCHEMA = 'flights' AND kcu.TABLE_NAME = 'tags' AND rc.TABLE_NAME = 'tags'
+2020-11-25 01:05:05 Debug: duration=1 rows=1 SHOW TABLE STATUS WHERE Name = 'tags'
+2020-11-25 01:05:05 Debug: duration=2 rows=6 SHOW FULL COLUMNS FROM `files`
+2020-11-25 01:05:05 Debug: duration=1 rows=1 SHOW INDEXES FROM `files`
+2020-11-25 01:05:05 Debug: duration=8 rows=0 SELECT * FROM information_schema.key_column_usage AS kcu
+            INNER JOIN information_schema.referential_constraints AS rc
+            ON (
+                kcu.CONSTRAINT_NAME = rc.CONSTRAINT_NAME
+                AND kcu.CONSTRAINT_SCHEMA = rc.CONSTRAINT_SCHEMA
+            )
+            WHERE kcu.TABLE_SCHEMA = 'flights' AND kcu.TABLE_NAME = 'files' AND rc.TABLE_NAME = 'files'
+2020-11-25 01:05:05 Debug: duration=1 rows=1 SHOW TABLE STATUS WHERE Name = 'files'
+2020-11-25 01:05:05 Debug: duration=1 rows=5 SHOW FULL COLUMNS FROM `airlines`
+2020-11-25 01:05:05 Debug: duration=1 rows=3 SHOW INDEXES FROM `airlines`
+2020-11-25 01:05:05 Debug: duration=8 rows=2 SELECT * FROM information_schema.key_column_usage AS kcu
+            INNER JOIN information_schema.referential_constraints AS rc
+            ON (
+                kcu.CONSTRAINT_NAME = rc.CONSTRAINT_NAME
+                AND kcu.CONSTRAINT_SCHEMA = rc.CONSTRAINT_SCHEMA
+            )
+            WHERE kcu.TABLE_SCHEMA = 'flights' AND kcu.TABLE_NAME = 'airlines' AND rc.TABLE_NAME = 'airlines'
+2020-11-25 01:05:05 Debug: duration=1 rows=1 SHOW TABLE STATUS WHERE Name = 'airlines'
+2020-11-25 01:05:05 Debug: duration=1 rows=1 SELECT Flights.id AS `Flights__id`, Flights.user_id AS `Flights__user_id`, Flights.airline_id AS `Flights__airline_id`, Flights.title AS `Flights__title`, Flights.slug AS `Flights__slug`, Flights.body AS `Flights__body`, Flights.published AS `Flights__published`, Flights.created AS `Flights__created`, Flights.modified AS `Flights__modified`, Airlines.id AS `Airlines__id`, Airlines.region_id AS `Airlines__region_id`, Airlines.country_id AS `Airlines__country_id`, Airlines.code AS `Airlines__code`, Airlines.name AS `Airlines__name` FROM flights Flights INNER JOIN airlines Airlines ON Airlines.id = (Flights.airline_id) WHERE Flights.slug = 'Calgary-Vancouver' LIMIT 1
+2020-11-25 01:05:05 Debug: duration=1 rows=6 SHOW FULL COLUMNS FROM `i18n`
+2020-11-25 01:05:05 Debug: duration=1 rows=8 SHOW INDEXES FROM `i18n`
+2020-11-25 01:05:05 Debug: duration=7 rows=0 SELECT * FROM information_schema.key_column_usage AS kcu
+            INNER JOIN information_schema.referential_constraints AS rc
+            ON (
+                kcu.CONSTRAINT_NAME = rc.CONSTRAINT_NAME
+                AND kcu.CONSTRAINT_SCHEMA = rc.CONSTRAINT_SCHEMA
+            )
+            WHERE kcu.TABLE_SCHEMA = 'flights' AND kcu.TABLE_NAME = 'i18n' AND rc.TABLE_NAME = 'i18n'
+2020-11-25 01:05:05 Debug: duration=1 rows=1 SHOW TABLE STATUS WHERE Name = 'i18n'
+2020-11-25 01:05:05 Debug: duration=1 rows=2 SELECT Bookings.id AS `Bookings__id`, Bookings.flight_id AS `Bookings__flight_id`, Bookings.name AS `Bookings__name`, Bookings.booking AS `Bookings__booking`, Bookings.created AS `Bookings__created`, Bookings.modified AS `Bookings__modified`, Bookings_name_translation.id AS `Bookings_name_translation__id`, Bookings_name_translation.locale AS `Bookings_name_translation__locale`, Bookings_name_translation.model AS `Bookings_name_translation__model`, Bookings_name_translation.foreign_key AS `Bookings_name_translation__foreign_key`, Bookings_name_translation.field AS `Bookings_name_translation__field`, Bookings_name_translation.content AS `Bookings_name_translation__content`, Bookings_booking_translation.id AS `Bookings_booking_translation__id`, Bookings_booking_translation.locale AS `Bookings_booking_translation__locale`, Bookings_booking_translation.model AS `Bookings_booking_translation__model`, Bookings_booking_translation.foreign_key AS `Bookings_booking_translation__foreign_key`, Bookings_booking_translation.field AS `Bookings_booking_translation__field`, Bookings_booking_translation.content AS `Bookings_booking_translation__content` FROM bookings Bookings LEFT JOIN i18n Bookings_name_translation ON (Bookings_name_translation.model = 'Bookings' AND Bookings_name_translation.field = 'name' AND Bookings_name_translation.locale = 'fr_CA' AND Bookings.id = (Bookings_name_translation.foreign_key)) LEFT JOIN i18n Bookings_booking_translation ON (Bookings_booking_translation.model = 'Bookings' AND Bookings_booking_translation.field = 'booking' AND Bookings_booking_translation.locale = 'fr_CA' AND Bookings.id = (Bookings_booking_translation.foreign_key)) WHERE Bookings.flight_id in (17)
+2020-11-25 01:05:05 Debug: duration=1 rows=2 SHOW FULL COLUMNS FROM `flights_tags`
+2020-11-25 01:05:05 Debug: duration=1 rows=3 SHOW INDEXES FROM `flights_tags`
+2020-11-25 01:05:05 Debug: duration=7 rows=2 SELECT * FROM information_schema.key_column_usage AS kcu
+            INNER JOIN information_schema.referential_constraints AS rc
+            ON (
+                kcu.CONSTRAINT_NAME = rc.CONSTRAINT_NAME
+                AND kcu.CONSTRAINT_SCHEMA = rc.CONSTRAINT_SCHEMA
+            )
+            WHERE kcu.TABLE_SCHEMA = 'flights' AND kcu.TABLE_NAME = 'flights_tags' AND rc.TABLE_NAME = 'flights_tags'
+2020-11-25 01:05:05 Debug: duration=1 rows=1 SHOW TABLE STATUS WHERE Name = 'flights_tags'
+2020-11-25 01:05:05 Debug: duration=1 rows=1 SELECT FlightsTags.flight_id AS `Tags_CJoin__flight_id`, FlightsTags.tag_id AS `Tags_CJoin__tag_id`, Tags.id AS `Tags__id`, Tags.title AS `Tags__title`, Tags.created AS `Tags__created`, Tags.modified AS `Tags__modified`, Tags_title_translation.id AS `Tags_title_translation__id`, Tags_title_translation.content AS `Tags_title_translation__content` FROM tags Tags INNER JOIN flights_tags FlightsTags ON Tags.id = (FlightsTags.tag_id) LEFT JOIN i18n Tags_title_translation ON (Tags_title_translation.model = 'Tags' AND Tags_title_translation.field = 'title' AND Tags_title_translation.locale = 'fr_CA' AND Tags.id = (Tags_title_translation.foreign_key)) WHERE FlightsTags.flight_id in (17)
+2020-11-25 01:05:05 Debug: duration=2 rows=3 SHOW FULL COLUMNS FROM `flights_files`
+2020-11-25 01:05:05 Debug: duration=1 rows=3 SHOW INDEXES FROM `flights_files`
+2020-11-25 01:05:05 Debug: duration=10 rows=2 SELECT * FROM information_schema.key_column_usage AS kcu
+            INNER JOIN information_schema.referential_constraints AS rc
+            ON (
+                kcu.CONSTRAINT_NAME = rc.CONSTRAINT_NAME
+                AND kcu.CONSTRAINT_SCHEMA = rc.CONSTRAINT_SCHEMA
+            )
+            WHERE kcu.TABLE_SCHEMA = 'flights' AND kcu.TABLE_NAME = 'flights_files' AND rc.TABLE_NAME = 'flights_files'
+2020-11-25 01:05:05 Debug: duration=1 rows=1 SHOW TABLE STATUS WHERE Name = 'flights_files'
+2020-11-25 01:05:05 Debug: duration=1 rows=1 SELECT FlightsFiles.id AS `Files_CJoin__id`, FlightsFiles.flight_id AS `Files_CJoin__flight_id`, FlightsFiles.file_id AS `Files_CJoin__file_id`, Files.id AS `Files__id`, Files.name AS `Files__name`, Files.path AS `Files__path`, Files.created AS `Files__created`, Files.modified AS `Files__modified`, Files.status AS `Files__status` FROM files Files INNER JOIN flights_files FlightsFiles ON Files.id = (FlightsFiles.file_id) WHERE FlightsFiles.flight_id in (17)
+2020-11-25 01:10:22 Debug: duration=2 rows=9 SHOW FULL COLUMNS FROM `flights`
+2020-11-25 01:10:22 Debug: duration=1 rows=4 SHOW INDEXES FROM `flights`
+2020-11-25 01:10:22 Debug: duration=8 rows=2 SELECT * FROM information_schema.key_column_usage AS kcu
+            INNER JOIN information_schema.referential_constraints AS rc
+            ON (
+                kcu.CONSTRAINT_NAME = rc.CONSTRAINT_NAME
+                AND kcu.CONSTRAINT_SCHEMA = rc.CONSTRAINT_SCHEMA
+            )
+            WHERE kcu.TABLE_SCHEMA = 'flights' AND kcu.TABLE_NAME = 'flights' AND rc.TABLE_NAME = 'flights'
+2020-11-25 01:10:22 Debug: duration=1 rows=1 SHOW TABLE STATUS WHERE Name = 'flights'
+2020-11-25 01:10:22 Debug: duration=2 rows=6 SHOW FULL COLUMNS FROM `bookings`
+2020-11-25 01:10:22 Debug: duration=1 rows=2 SHOW INDEXES FROM `bookings`
+2020-11-25 01:10:22 Debug: duration=7 rows=1 SELECT * FROM information_schema.key_column_usage AS kcu
+            INNER JOIN information_schema.referential_constraints AS rc
+            ON (
+                kcu.CONSTRAINT_NAME = rc.CONSTRAINT_NAME
+                AND kcu.CONSTRAINT_SCHEMA = rc.CONSTRAINT_SCHEMA
+            )
+            WHERE kcu.TABLE_SCHEMA = 'flights' AND kcu.TABLE_NAME = 'bookings' AND rc.TABLE_NAME = 'bookings'
+2020-11-25 01:10:22 Debug: duration=1 rows=1 SHOW TABLE STATUS WHERE Name = 'bookings'
+2020-11-25 01:10:22 Debug: duration=1 rows=4 SHOW FULL COLUMNS FROM `tags`
+2020-11-25 01:10:22 Debug: duration=1 rows=2 SHOW INDEXES FROM `tags`
+2020-11-25 01:10:22 Debug: duration=8 rows=0 SELECT * FROM information_schema.key_column_usage AS kcu
+            INNER JOIN information_schema.referential_constraints AS rc
+            ON (
+                kcu.CONSTRAINT_NAME = rc.CONSTRAINT_NAME
+                AND kcu.CONSTRAINT_SCHEMA = rc.CONSTRAINT_SCHEMA
+            )
+            WHERE kcu.TABLE_SCHEMA = 'flights' AND kcu.TABLE_NAME = 'tags' AND rc.TABLE_NAME = 'tags'
+2020-11-25 01:10:22 Debug: duration=2 rows=1 SHOW TABLE STATUS WHERE Name = 'tags'
+2020-11-25 01:10:22 Debug: duration=1 rows=6 SHOW FULL COLUMNS FROM `files`
+2020-11-25 01:10:22 Debug: duration=2 rows=1 SHOW INDEXES FROM `files`
+2020-11-25 01:10:22 Debug: duration=7 rows=0 SELECT * FROM information_schema.key_column_usage AS kcu
+            INNER JOIN information_schema.referential_constraints AS rc
+            ON (
+                kcu.CONSTRAINT_NAME = rc.CONSTRAINT_NAME
+                AND kcu.CONSTRAINT_SCHEMA = rc.CONSTRAINT_SCHEMA
+            )
+            WHERE kcu.TABLE_SCHEMA = 'flights' AND kcu.TABLE_NAME = 'files' AND rc.TABLE_NAME = 'files'
+2020-11-25 01:10:22 Debug: duration=1 rows=1 SHOW TABLE STATUS WHERE Name = 'files'
+2020-11-25 01:10:22 Debug: duration=2 rows=5 SHOW FULL COLUMNS FROM `airlines`
+2020-11-25 01:10:22 Debug: duration=1 rows=3 SHOW INDEXES FROM `airlines`
+2020-11-25 01:10:22 Debug: duration=8 rows=2 SELECT * FROM information_schema.key_column_usage AS kcu
+            INNER JOIN information_schema.referential_constraints AS rc
+            ON (
+                kcu.CONSTRAINT_NAME = rc.CONSTRAINT_NAME
+                AND kcu.CONSTRAINT_SCHEMA = rc.CONSTRAINT_SCHEMA
+            )
+            WHERE kcu.TABLE_SCHEMA = 'flights' AND kcu.TABLE_NAME = 'airlines' AND rc.TABLE_NAME = 'airlines'
+2020-11-25 01:10:22 Debug: duration=1 rows=1 SHOW TABLE STATUS WHERE Name = 'airlines'
+2020-11-25 01:10:22 Debug: duration=1 rows=1 SELECT Flights.id AS `Flights__id`, Flights.user_id AS `Flights__user_id`, Flights.airline_id AS `Flights__airline_id`, Flights.title AS `Flights__title`, Flights.slug AS `Flights__slug`, Flights.body AS `Flights__body`, Flights.published AS `Flights__published`, Flights.created AS `Flights__created`, Flights.modified AS `Flights__modified`, Airlines.id AS `Airlines__id`, Airlines.region_id AS `Airlines__region_id`, Airlines.country_id AS `Airlines__country_id`, Airlines.code AS `Airlines__code`, Airlines.name AS `Airlines__name` FROM flights Flights INNER JOIN airlines Airlines ON Airlines.id = (Flights.airline_id) WHERE Flights.slug = 'Calgary-Vancouver' LIMIT 1
+2020-11-25 01:10:22 Debug: duration=1 rows=6 SHOW FULL COLUMNS FROM `i18n`
+2020-11-25 01:10:22 Debug: duration=3 rows=8 SHOW INDEXES FROM `i18n`
+2020-11-25 01:10:22 Debug: duration=7 rows=0 SELECT * FROM information_schema.key_column_usage AS kcu
+            INNER JOIN information_schema.referential_constraints AS rc
+            ON (
+                kcu.CONSTRAINT_NAME = rc.CONSTRAINT_NAME
+                AND kcu.CONSTRAINT_SCHEMA = rc.CONSTRAINT_SCHEMA
+            )
+            WHERE kcu.TABLE_SCHEMA = 'flights' AND kcu.TABLE_NAME = 'i18n' AND rc.TABLE_NAME = 'i18n'
+2020-11-25 01:10:22 Debug: duration=1 rows=1 SHOW TABLE STATUS WHERE Name = 'i18n'
+2020-11-25 01:10:22 Debug: duration=1 rows=2 SELECT Bookings.id AS `Bookings__id`, Bookings.flight_id AS `Bookings__flight_id`, Bookings.name AS `Bookings__name`, Bookings.booking AS `Bookings__booking`, Bookings.created AS `Bookings__created`, Bookings.modified AS `Bookings__modified`, Bookings_name_translation.id AS `Bookings_name_translation__id`, Bookings_name_translation.locale AS `Bookings_name_translation__locale`, Bookings_name_translation.model AS `Bookings_name_translation__model`, Bookings_name_translation.foreign_key AS `Bookings_name_translation__foreign_key`, Bookings_name_translation.field AS `Bookings_name_translation__field`, Bookings_name_translation.content AS `Bookings_name_translation__content`, Bookings_booking_translation.id AS `Bookings_booking_translation__id`, Bookings_booking_translation.locale AS `Bookings_booking_translation__locale`, Bookings_booking_translation.model AS `Bookings_booking_translation__model`, Bookings_booking_translation.foreign_key AS `Bookings_booking_translation__foreign_key`, Bookings_booking_translation.field AS `Bookings_booking_translation__field`, Bookings_booking_translation.content AS `Bookings_booking_translation__content` FROM bookings Bookings LEFT JOIN i18n Bookings_name_translation ON (Bookings_name_translation.model = 'Bookings' AND Bookings_name_translation.field = 'name' AND Bookings_name_translation.locale = 'fr_CA' AND Bookings.id = (Bookings_name_translation.foreign_key)) LEFT JOIN i18n Bookings_booking_translation ON (Bookings_booking_translation.model = 'Bookings' AND Bookings_booking_translation.field = 'booking' AND Bookings_booking_translation.locale = 'fr_CA' AND Bookings.id = (Bookings_booking_translation.foreign_key)) WHERE Bookings.flight_id in (17)
+2020-11-25 01:10:22 Debug: duration=1 rows=2 SHOW FULL COLUMNS FROM `flights_tags`
+2020-11-25 01:10:22 Debug: duration=1 rows=3 SHOW INDEXES FROM `flights_tags`
+2020-11-25 01:10:22 Debug: duration=8 rows=2 SELECT * FROM information_schema.key_column_usage AS kcu
+            INNER JOIN information_schema.referential_constraints AS rc
+            ON (
+                kcu.CONSTRAINT_NAME = rc.CONSTRAINT_NAME
+                AND kcu.CONSTRAINT_SCHEMA = rc.CONSTRAINT_SCHEMA
+            )
+            WHERE kcu.TABLE_SCHEMA = 'flights' AND kcu.TABLE_NAME = 'flights_tags' AND rc.TABLE_NAME = 'flights_tags'
+2020-11-25 01:10:22 Debug: duration=1 rows=1 SHOW TABLE STATUS WHERE Name = 'flights_tags'
+2020-11-25 01:10:22 Debug: duration=1 rows=1 SELECT FlightsTags.flight_id AS `Tags_CJoin__flight_id`, FlightsTags.tag_id AS `Tags_CJoin__tag_id`, Tags.id AS `Tags__id`, Tags.title AS `Tags__title`, Tags.created AS `Tags__created`, Tags.modified AS `Tags__modified`, Tags_title_translation.id AS `Tags_title_translation__id`, Tags_title_translation.content AS `Tags_title_translation__content` FROM tags Tags INNER JOIN flights_tags FlightsTags ON Tags.id = (FlightsTags.tag_id) LEFT JOIN i18n Tags_title_translation ON (Tags_title_translation.model = 'Tags' AND Tags_title_translation.field = 'title' AND Tags_title_translation.locale = 'fr_CA' AND Tags.id = (Tags_title_translation.foreign_key)) WHERE FlightsTags.flight_id in (17)
+2020-11-25 01:10:22 Debug: duration=1 rows=3 SHOW FULL COLUMNS FROM `flights_files`
+2020-11-25 01:10:22 Debug: duration=2 rows=3 SHOW INDEXES FROM `flights_files`
+2020-11-25 01:10:22 Debug: duration=7 rows=2 SELECT * FROM information_schema.key_column_usage AS kcu
+            INNER JOIN information_schema.referential_constraints AS rc
+            ON (
+                kcu.CONSTRAINT_NAME = rc.CONSTRAINT_NAME
+                AND kcu.CONSTRAINT_SCHEMA = rc.CONSTRAINT_SCHEMA
+            )
+            WHERE kcu.TABLE_SCHEMA = 'flights' AND kcu.TABLE_NAME = 'flights_files' AND rc.TABLE_NAME = 'flights_files'
+2020-11-25 01:10:22 Debug: duration=1 rows=1 SHOW TABLE STATUS WHERE Name = 'flights_files'
+2020-11-25 01:10:22 Debug: duration=1 rows=1 SELECT FlightsFiles.id AS `Files_CJoin__id`, FlightsFiles.flight_id AS `Files_CJoin__flight_id`, FlightsFiles.file_id AS `Files_CJoin__file_id`, Files.id AS `Files__id`, Files.name AS `Files__name`, Files.path AS `Files__path`, Files.created AS `Files__created`, Files.modified AS `Files__modified`, Files.status AS `Files__status` FROM files Files INNER JOIN flights_files FlightsFiles ON Files.id = (FlightsFiles.file_id) WHERE FlightsFiles.flight_id in (17)
+2020-11-25 01:10:23 Debug: duration=1 rows=7 SHOW FULL COLUMNS FROM `users`
+2020-11-25 01:10:23 Debug: duration=1 rows=1 SHOW INDEXES FROM `users`
+2020-11-25 01:10:23 Debug: duration=8 rows=0 SELECT * FROM information_schema.key_column_usage AS kcu
+            INNER JOIN information_schema.referential_constraints AS rc
+            ON (
+                kcu.CONSTRAINT_NAME = rc.CONSTRAINT_NAME
+                AND kcu.CONSTRAINT_SCHEMA = rc.CONSTRAINT_SCHEMA
+            )
+            WHERE kcu.TABLE_SCHEMA = 'flights' AND kcu.TABLE_NAME = 'users' AND rc.TABLE_NAME = 'users'
+2020-11-25 01:10:23 Debug: duration=3 rows=1 SHOW TABLE STATUS WHERE Name = 'users'
+2020-11-25 01:10:23 Debug: duration=1 rows=2 SELECT Flights.id AS `Flights__id`, Flights.user_id AS `Flights__user_id`, Flights.airline_id AS `Flights__airline_id`, Flights.title AS `Flights__title`, Flights.slug AS `Flights__slug`, Flights.body AS `Flights__body`, Flights.published AS `Flights__published`, Flights.created AS `Flights__created`, Flights.modified AS `Flights__modified`, Users.id AS `Users__id`, Users.email AS `Users__email`, Users.password AS `Users__password`, Users.uuid AS `Users__uuid`, Users.confirmed AS `Users__confirmed`, Users.created AS `Users__created`, Users.modified AS `Users__modified` FROM flights Flights INNER JOIN users Users ON Users.id = (Flights.user_id) LIMIT 20 OFFSET 0
+2020-11-25 01:10:23 Debug: duration=1 rows=2 SELECT FlightsTags.flight_id AS `Tags_CJoin__flight_id`, FlightsTags.tag_id AS `Tags_CJoin__tag_id`, Tags.id AS `Tags__id`, Tags.title AS `Tags__title`, Tags.created AS `Tags__created`, Tags.modified AS `Tags__modified`, Tags_title_translation.id AS `Tags_title_translation__id`, Tags_title_translation.content AS `Tags_title_translation__content` FROM tags Tags INNER JOIN flights_tags FlightsTags ON Tags.id = (FlightsTags.tag_id) LEFT JOIN i18n Tags_title_translation ON (Tags_title_translation.model = 'Tags' AND Tags_title_translation.field = 'title' AND Tags_title_translation.locale = 'fr_CA' AND Tags.id = (Tags_title_translation.foreign_key)) WHERE FlightsTags.flight_id in (16,17)
+2020-11-25 01:10:23 Debug: duration=1 rows=2 SELECT FlightsFiles.id AS `Files_CJoin__id`, FlightsFiles.flight_id AS `Files_CJoin__flight_id`, FlightsFiles.file_id AS `Files_CJoin__file_id`, Files.id AS `Files__id`, Files.name AS `Files__name`, Files.path AS `Files__path`, Files.created AS `Files__created`, Files.modified AS `Files__modified`, Files.status AS `Files__status` FROM files Files INNER JOIN flights_files FlightsFiles ON Files.id = (FlightsFiles.file_id) WHERE FlightsFiles.flight_id in (16,17)
+2020-11-25 01:10:23 Debug: duration=1 rows=1 SELECT (COUNT(*)) AS `count` FROM flights Flights INNER JOIN users Users ON Users.id = (Flights.user_id)
+2020-11-25 01:10:24 Debug: duration=2 rows=3 SHOW FULL COLUMNS FROM `regions`
+2020-11-25 01:10:24 Debug: duration=3 rows=1 SHOW INDEXES FROM `regions`
+2020-11-25 01:10:24 Debug: duration=9 rows=0 SELECT * FROM information_schema.key_column_usage AS kcu
+            INNER JOIN information_schema.referential_constraints AS rc
+            ON (
+                kcu.CONSTRAINT_NAME = rc.CONSTRAINT_NAME
+                AND kcu.CONSTRAINT_SCHEMA = rc.CONSTRAINT_SCHEMA
+            )
+            WHERE kcu.TABLE_SCHEMA = 'flights' AND kcu.TABLE_NAME = 'regions' AND rc.TABLE_NAME = 'regions'
+2020-11-25 01:10:24 Debug: duration=2 rows=1 SHOW TABLE STATUS WHERE Name = 'regions'
+2020-11-25 01:10:24 Debug: duration=1 rows=4 SHOW FULL COLUMNS FROM `countries`
+2020-11-25 01:10:24 Debug: duration=2 rows=2 SHOW INDEXES FROM `countries`
+2020-11-25 01:10:24 Debug: duration=9 rows=1 SELECT * FROM information_schema.key_column_usage AS kcu
+            INNER JOIN information_schema.referential_constraints AS rc
+            ON (
+                kcu.CONSTRAINT_NAME = rc.CONSTRAINT_NAME
+                AND kcu.CONSTRAINT_SCHEMA = rc.CONSTRAINT_SCHEMA
+            )
+            WHERE kcu.TABLE_SCHEMA = 'flights' AND kcu.TABLE_NAME = 'countries' AND rc.TABLE_NAME = 'countries'
+2020-11-25 01:10:24 Debug: duration=1 rows=1 SHOW TABLE STATUS WHERE Name = 'countries'
+2020-11-25 01:10:24 Debug: duration=0 rows=7 SELECT Regions.id AS `Regions__id`, Regions.name AS `Regions__name` FROM regions Regions LIMIT 200
+2020-11-25 01:10:24 Debug: duration=0 rows=12 SELECT Countries.id AS `Countries__id`, Countries.name AS `Countries__name` FROM countries Countries LIMIT 200
+2020-11-25 01:11:10 Debug: duration=1 rows=3 SELECT Tags.id AS `Tags__id`, Tags.title AS `Tags__title`, Tags_title_translation.id AS `Tags_title_translation__id`, Tags_title_translation.content AS `Tags_title_translation__content` FROM tags Tags LEFT JOIN i18n Tags_title_translation ON (Tags_title_translation.model = 'Tags' AND Tags_title_translation.field = 'title' AND Tags_title_translation.locale = 'fr_CA' AND Tags.id = (Tags_title_translation.foreign_key)) LIMIT 200
+2020-11-25 01:11:10 Debug: duration=0 rows=6 SELECT Files.id AS `Files__id`, Files.name AS `Files__name` FROM files Files LIMIT 200
